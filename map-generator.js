@@ -6,15 +6,15 @@ const generateBaseMapArray = (sizeX, sizeY) => {
 
   for (let i = 0; i < sizeX; i += 1) {
     for (let j = 0; j < sizeY; j += 1) {
-      const cellObj = {};
-      cellObj.x = i;
-      cellObj.y = j;
-      cellObj.startingCell = false;
-      cellObj.cellType = 0;
-      mapArray.push(cellObj);
+      const roomObj = {};
+      roomObj.x = i;
+      roomObj.y = j;
+      roomObj.startingCell = false;
+      roomObj.cellType = 0;
+      roomObj.doors = [0, 0, 0, 0]; // north, south, east, west
+      mapArray.push(roomObj);
     }
   }
-
 
   return mapArray;
 };
@@ -37,6 +37,7 @@ const designateStartingCell = (sizeX, sizeY, mapArray) => {
   const numberOfCells = sizeX * sizeY;
   const startingCell = workingArray[randomNumGenerator(0, numberOfCells)];
   startingCell.startingCell = true;
+  startingCell.cellType = 1;
   return workingArray;
 };
 
