@@ -1,27 +1,30 @@
 // generate an array of cells based on given sizes
-const generateBaseArray = (sizeX, sizeY) => {
-  let baseArray = [];
+const generateBaseMapArray = (sizeX, sizeY) => {
+  let mapArray = [];
+  let xArray = []
 
   for (let i = 0; i < sizeX; i++) {
-    for (let j = 0; j < sizeY; j++) {
-      let cellObj = {};
-      cellObj.xCoordinate = i;
-      cellObj.yCoordinate = j;
-      cellObj.startingCell = false;
-      baseArray.push(cellObj);
-    }
+    let cellObj = {};
+    cellObj.isRoom = false;
+    cellObj.startingCell = false;
+    xArray.push(cellObj);
   }
-  return baseArray;
+
+  for (let j = 0; j < sizeY; j++) {
+    mapArray.push(xArray);
+  }
+
+  return mapArray;
 }
 
 // pick one cell to be the starting position for the player
-const designateStartingCell = (baseArray) => {
-  startingCell = Math.floor(Math.random() * baseArray.length) + 1;
-  baseArray[startingCell].startingCell = true;
-  return baseArray;
+const designateStartingCell = (mapArray) => {
+  startingCell = Math.floor(Math.random() * mapArray.length) + 1;
+  mapArray[startingCell].startingCell = true;
+  return mapArray;
 }
 
 const mapGenerator = (sizeX, sizeY) => {
-  let baseArray = generateBaseArray(sizeX, sizeY);
-  return designateStartingCell(baseArray);
+  let mapArray = generateBaseMapArray(sizeX, sizeY);
+  return designateStartingCell(mapArray);
 }
