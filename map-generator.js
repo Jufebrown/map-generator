@@ -17,14 +17,16 @@ const generateBaseMapArray = (sizeX, sizeY) => {
   return mapArray;
 }
 
+const randomNumberGenerator = (lowerLimit, upperLimit) {
+  return Math.floor(Math.random() * upperLimit) + lowerLimit;  
+}
+
 // pick one cell to be the starting position for the player
-const designateStartingCell = (mapArray) => {
-  startingCell = Math.floor(Math.random() * mapArray.length) + 1;
-  mapArray[startingCell].startingCell = true;
-  return mapArray;
+const designateStartingCell = (sizeX, sizeY, mapArray) => {
+  const 
 }
 
 const mapGenerator = (sizeX, sizeY) => {
   let mapArray = generateBaseMapArray(sizeX, sizeY);
-  return designateStartingCell(mapArray);
+  return designateStartingCell(sizeX, sizeY, mapArray);
 }
