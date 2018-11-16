@@ -19,20 +19,30 @@ const generateBaseMapArray = (sizeX, sizeY) => {
   return mapArray;
 };
 
+const isBoundaryCell = (mapArray, cellNumber, sizeX, sizeY) => {
+  if (mapArray[cellNumber].x === (0 || sizeX - 1)) {
+    return true;
+  }
+  if (mapArray[cellNumber].y === (0 || sizeY - 1)) {
+    return true;
+  }
+  return false;
+};
+
 const randomNumGenerator = (loLimit, hiLimit) => Math.floor(Math.random() * (hiLimit)) + (loLimit);
 
 // pick one cell to be the starting position for the player
 const designateStartingCell = (sizeX, sizeY, mapArray) => {
-  // const xStartCoordinate = randomNumGenerator(0, sizeX);
-  // const yStartCoordinate = randomNumGenerator(0, sizeY);
-  // console.log('xstart: ', xStartCoordinate);
-  // console.log('ystart: ', yStartCoordinate);
   const workingArray = mapArray;
-  workingArray[0][2] = 1;
+  const numberOfCells = sizeX * sizeY;
+  const startingCell = workingArray[randomNumGenerator(0, numberOfCells)];
+  startingCell.startingCell = true;
   return workingArray;
 };
 
 const mapGenerator = (sizeX, sizeY) => {
-  const mapArray = generateBaseMapArray(sizeX, sizeY);
-  return designateStartingCell(sizeX, sizeY, mapArray);
+  let mapArray = generateBaseMapArray(sizeX, sizeY);
+  mapArray = designateStartingCell(sizeX, sizeY, mapArray);
+
+  return mapArray;
 };
