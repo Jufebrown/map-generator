@@ -54,12 +54,10 @@ const designateStartingCell = (sizeX, sizeY, mapArray) => {
 const getLargerValue = (value1, value2) => {
   const result1 = Math.abs(value1 - value2);
   const result2 = Math.abs(value1 - 0);
-  console.log('result1', result1);
-  console.log('result2', result2);
   return Math.max(result1, result2);
 };
 
-const findFarthestCell = (sizeX, sizeY) => {
+const findFarthestCellFromStart = (sizeX, sizeY) => {
   const farthestCell = {};
   farthestCell.xDistanceFromStart = getLargerValue(startingCell.x, sizeX - 1);
   farthestCell.yDistanceFromStart = getLargerValue(startingCell.y, sizeY - 1);
@@ -67,7 +65,19 @@ const findFarthestCell = (sizeX, sizeY) => {
 };
 
 const moveNorthOneCell = () => {
-  currentCell.x;
+  currentCell.y += 1;
+};
+
+const moveSouthOneCell = () => {
+  currentCell.y -= 1;
+};
+
+const moveWestOneCell = () => {
+  currentCell.x -= 1;
+};
+
+const moveEastOneCell = () => {
+  currentCell.x += 1;
 };
 
 const drawMap = (sizeX, sizeY, mapArray) => {
@@ -96,7 +106,7 @@ const drawMap = (sizeX, sizeY, mapArray) => {
 const mapGenerator = (sizeX, sizeY) => {
   let mapArray = generateBaseMapArray(sizeX, sizeY);
   mapArray = designateStartingCell(sizeX, sizeY, mapArray);
-  findFarthestCell(sizeX, sizeY);
+  findFarthestCellFromStart(sizeX, sizeY);
   drawMap(sizeX, sizeY, mapArray);
   return mapArray;
 };
