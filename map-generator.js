@@ -64,22 +64,6 @@ const findFarthestCellFromStart = (sizeX, sizeY) => {
   console.log('farthestCell', farthestCell);
 };
 
-const moveNorthOneCell = () => {
-  currentCell.y += 1;
-};
-
-const moveSouthOneCell = () => {
-  currentCell.y -= 1;
-};
-
-const moveWestOneCell = () => {
-  currentCell.x -= 1;
-};
-
-const moveEastOneCell = () => {
-  currentCell.x += 1;
-};
-
 const drawMap = (sizeX, sizeY, mapArray) => {
   const miniMap = document.querySelector('.map');
   let mapString = '';
