@@ -4,11 +4,11 @@
 const generateBaseMapArray = (sizeX, sizeY) => {
   const mapArray = [];
 
-  for (let i = 0; i < sizeX; i += 1) {
-    for (let j = 0; j < sizeY; j += 1) {
+  for (let i = 0; i < sizeY; i += 1) {
+    for (let j = 0; j < sizeX; j += 1) {
       const roomObj = {};
-      roomObj.x = i;
-      roomObj.y = j;
+      roomObj.x = j;
+      roomObj.y = i;
       roomObj.startingCell = false;
       roomObj.cellType = 0;
       roomObj.doorNorth = 0;
@@ -44,26 +44,32 @@ const designateStartingCell = (sizeX, sizeY, mapArray) => {
   return workingArray;
 };
 
-const mapGenerator = (sizeX, sizeY) => {
-  let mapArray = generateBaseMapArray(sizeX, sizeY);
-  mapArray = designateStartingCell(sizeX, sizeY, mapArray);
-
-  return mapArray;
-};
-
-const drawMap = (sizeX, sizeY) => {
-  let mapString = '';
-  let rowString = '';
-
-  for (let i = 0; i < sizeX; i += 1) {
-    rowString += '<div class="cell wall"></div>';
-  }
-  rowString = `<div class="map-row">${rowString}</div>`;
-  for (let j = 0; j < sizeY; j += 1) {
-    mapString += rowString;
-  }
+const drawMap = (sizeX, sizeY, mapArray) => {
   const miniMap = document.querySelector('.map');
+  let mapString = '';
+
+  mapArray.forEach((cell) => {
+    if (cell.x === 0) {
+      mapString += '<div class="map-row">';
+    }
+    if (cell.cellType === 0) {
+      mapString += '<div class="cell wall"></div>';
+    } else if (cell.cellType === 1) {
+      mapString += '<div class="cell room"></div>';
+    }
+    if (cell.x === (sizeX - 1)) {
+      mapString += '</div>';
+    }
+  });
+
   miniMap.innerHTML = mapString;
 };
 
-drawMap(10, 10);
+const mapGenerator = (sizeX, sizeY) => {
+  let mapArray = generateBaseMapArray(sizeX, sizeY);
+  mapArray = designateStartingCell(sizeX, sizeY, mapArray);
+  drawMap(sizeX, sizeY, mapArray);
+  return mapArray;
+};
+
+mapGenerator(20, 20);
