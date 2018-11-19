@@ -2,14 +2,11 @@
 // generate an array of cells based on given sizes
 
 const generateBaseMapArray = (sizeX, sizeY) => {
-  const rowArray = new Array(sizeX);
   const mapArray = new Array(sizeY);
 
   for (let row = 0; row < sizeY; row += 1) {
-    mapArray[row] = rowArray;
+    mapArray[row] = new Array(sizeX);
   }
-
-  console.log('mapArray', mapArray);
 
   for (let i = 0; i < sizeY; i += 1) {
     for (let j = 0; j < sizeX; j += 1) {
@@ -22,7 +19,7 @@ const generateBaseMapArray = (sizeX, sizeY) => {
       roomObj.doorSouth = 0;
       roomObj.doorEast = 0;
       roomObj.doorWest = 0;
-      mapArray[i][j] = roomObj;
+      mapArray[j][i] = roomObj;
     }
   }
 
@@ -41,13 +38,13 @@ const isBoundaryCell = (mapArray, cellNumber, sizeX, sizeY) => {
 
 const randomNumGenerator = (loLimit, hiLimit) => Math.floor(Math.random() * (hiLimit)) + (loLimit);
 
-pick one cell to be the starting position for the player
+// pick one cell to be the starting position for the player
 const designateStartingCell = (sizeX, sizeY, mapArray) => {
   const workingArray = mapArray;
-  const numberOfCells = sizeX * sizeY;
-  startingCell = workingArray[randomNumGenerator(0, numberOfCells)];
-  startingCell.startingCell = true;
-  startingCell.cellType = 1;
+  const startingXCoord = randomNumGenerator(0, sizeX);
+  const startingYCoord = randomNumGenerator(0, sizeY);
+  workingArray[startingXCoord][startingYCoord].startingCell = true;
+  workingArray[startingXCoord][startingYCoord].cellType = 1;
   return workingArray;
 };
 
@@ -79,8 +76,8 @@ const drawMap = (sizeX, mapArray) => {
 };
 
 const mapGenerator = (sizeX, sizeY) => {
-  const mapArray = generateBaseMapArray(sizeX, sizeY);
-  // mapArray = designateStartingCell(sizeX, sizeY, mapArray);
+  let mapArray = generateBaseMapArray(sizeX, sizeY);
+  mapArray = designateStartingCell(sizeX, sizeY, mapArray);
   // drawMap(sizeX, mapArray);
   return mapArray;
 };
