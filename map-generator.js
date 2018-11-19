@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 // generate an array of cells based on given sizes
 const startingCell = {};
-const currentCell = {};
+let currentCell = {};
 
 const generateBaseMapArray = (sizeX, sizeY) => {
   const mapArray = new Array(sizeY);
@@ -16,8 +16,6 @@ const generateBaseMapArray = (sizeX, sizeY) => {
       roomObj.x = j;
       roomObj.y = i;
       roomObj.startingCell = false;
-      roomObj.currentCell = false;
-      roomObj.exit = false;
       roomObj.cellType = 0;
       roomObj.doorNorth = 0;
       roomObj.doorSouth = 0;
@@ -30,16 +28,6 @@ const generateBaseMapArray = (sizeX, sizeY) => {
   return mapArray;
 };
 
-const isBoundaryCell = (mapArray, cellNumber, sizeX, sizeY) => {
-  if (mapArray[cellNumber].x === (0 || sizeX - 1)) {
-    return true;
-  }
-  if (mapArray[cellNumber].y === (0 || sizeY - 1)) {
-    return true;
-  }
-  return false;
-};
-
 const randomNumGenerator = (loLimit, hiLimit) => Math.floor(Math.random() * (hiLimit)) + (loLimit);
 
 // pick one cell to be the starting position for the player
@@ -47,6 +35,7 @@ const designateStartingCell = (sizeX, sizeY, mapArray) => {
   const workingArray = mapArray;
   startingCell.x = randomNumGenerator(0, sizeX);
   startingCell.y = randomNumGenerator(0, sizeY);
+  currentCell = startingCell;
   workingArray[startingCell.x][startingCell.y].startingCell = true;
   workingArray[startingCell.x][startingCell.y].cellType = 1;
   return workingArray;
@@ -62,7 +51,37 @@ const findFarthestCellFromStart = (sizeX, sizeY) => {
   const farthestCell = {};
   farthestCell.xDistanceFromStart = getLargerValue(startingCell.x, sizeX - 1);
   farthestCell.yDistanceFromStart = getLargerValue(startingCell.y, sizeY - 1);
-  console.log('farthestCell', farthestCell);
+  if (startingCell.x > Math.round(sizeX / 2)) {
+    farthestCell.x = startingCell.x - farthestCell.xDistanceFromStart;
+  } else {
+    farthestCell.x = startingCell.x + farthestCell.xDistanceFromStart;
+  }
+  if (startingCell.y > Math.round(sizeY / 2)) {
+    farthestCell.y = startingCell.y - farthestCell.yDistanceFromStart;
+  } else {
+    farthestCell.y = startingCell.y + farthestCell.yDistanceFromStart;
+  }
+
+  return farthestCell;
+};
+
+const setExit = (sizeX, sizeY, mapArray) => {
+  const exitCell = findFarthestCellFromStart(sizeX, sizeY);
+  const xVariance = randomNumGenerator(0, Math.round(sizeX / 4));
+  const yVariance = randomNumGenerator(0, Math.round(sizeY / 4));
+  if (exitCell.x > Math.round(sizeX / 2)) {
+    exitCell.x -= xVariance;
+  } else {
+    exitCell.x += xVariance;
+  }
+  if (exitCell.y > Math.round(sizeY / 2)) {
+    exitCell.y -= yVariance;
+  } else {
+    exitCell.y += yVariance;
+  }
+  const workingArray = mapArray;
+  workingArray[exitCell.y][exitCell.x].cellType = 2;
+  return workingArray;
 };
 
 const drawMap = (sizeX, sizeY, mapArray) => {
@@ -70,13 +89,13 @@ const drawMap = (sizeX, sizeY, mapArray) => {
   let mapString = '';
   for (let i = 0; i < sizeY; i += 1) {
     for (let j = 0; j < sizeX; j += 1) {
-      const currentCell = mapArray[j][i];
+      currentCell = mapArray[j][i];
       if (currentCell.x === 0) {
         mapString += '<div class="map-row">';
       }
       if (currentCell.cellType === 0) {
         mapString += '<div class="cell wall"></div>';
-      } else if (currentCell.cellType === 1) {
+      } else if (currentCell.cellType > 0) {
         mapString += '<div class="cell room"></div>';
       }
       if (currentCell.x === (sizeX - 1)) {
@@ -91,7 +110,7 @@ const drawMap = (sizeX, sizeY, mapArray) => {
 const mapGenerator = (sizeX, sizeY) => {
   let mapArray = generateBaseMapArray(sizeX, sizeY);
   mapArray = designateStartingCell(sizeX, sizeY, mapArray);
-  findFarthestCellFromStart(sizeX, sizeY);
+  mapArray = setExit(sizeX, sizeY, mapArray);
   drawMap(sizeX, sizeY, mapArray);
   return mapArray;
 };
