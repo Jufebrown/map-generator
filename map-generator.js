@@ -17,6 +17,7 @@ const generateBaseMapArray = (sizeX, sizeY) => {
       roomObj.y = i;
       roomObj.startingCell = false;
       roomObj.currentCell = false;
+      roomObj.exit = false;
       roomObj.cellType = 0;
       roomObj.doorNorth = 0;
       roomObj.doorSouth = 0;
