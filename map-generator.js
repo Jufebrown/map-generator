@@ -44,7 +44,7 @@ const designateStartingCell = (sizeX, sizeY, mapArray) => {
   return workingArray;
 };
 
-const drawMap = (sizeX, sizeY, mapArray) => {
+const drawMap = (sizeX, mapArray) => {
   const miniMap = document.querySelector('.map');
   let mapString = '';
 
@@ -68,7 +68,7 @@ const drawMap = (sizeX, sizeY, mapArray) => {
 const mapGenerator = (sizeX, sizeY) => {
   let mapArray = generateBaseMapArray(sizeX, sizeY);
   mapArray = designateStartingCell(sizeX, sizeY, mapArray);
-  drawMap(sizeX, sizeY, mapArray);
+  drawMap(sizeX, mapArray);
   return mapArray;
 };
 
