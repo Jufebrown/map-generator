@@ -50,3 +50,15 @@ const mapGenerator = (sizeX, sizeY) => {
 
   return mapArray;
 };
+
+const drawMap = (sizeX, sizeY) => {
+  let mapHTMLString = '';
+  for (let i = 0; i < sizeX; i += 1) {
+    mapHTMLString += '<div class="cell wall"></div>';
+  }
+  console.log('mapHTMLString', mapHTMLString);
+  const miniMap = document.querySelector('.map');
+  miniMap.innerHTML = mapHTMLString;
+};
+
+drawMap(5, 5);
