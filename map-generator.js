@@ -1,5 +1,6 @@
 /* eslint-disable linebreak-style */
 // generate an array of cells based on given sizes
+let startingCell = {};
 
 const generateBaseMapArray = (sizeX, sizeY) => {
   const mapArray = [];
