@@ -58,8 +58,8 @@ const getLargerValue = (value1, value2) => {
 
 const findFarthestCell = (sizeX, sizeY) => {
   const farthestCell = {};
-  farthestCell.xDistanceFromStart = Math.max(startingCell.x, sizeX - 1) - Math.min(startingCell.x, sizeX);
-  farthestCell.yDistanceFromStart = Math.max(startingCell.y, sizeY - 1) - Math.min(startingCell.y, sizeY);
+  farthestCell.xDistanceFromStart = getLargerValue(startingCell.x, sizeX - 1);
+  farthestCell.yDistanceFromStart = getLargerValue(startingCell.y, sizeY - 1);
   console.log('farthestCell', farthestCell);
 };
 
