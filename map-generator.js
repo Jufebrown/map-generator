@@ -51,24 +51,28 @@ const findFarthestCellFromStart = (sizeX, sizeY) => {
   const farthestCell = {};
   farthestCell.xDistanceFromStart = getLargerValue(startingCell.x, sizeX - 1);
   farthestCell.yDistanceFromStart = getLargerValue(startingCell.y, sizeY - 1);
-  if (startingCell.x > Math.round(sizeX / 2)) {
+  if (startingCell.x > Math.floor(sizeX / 2)) {
     farthestCell.x = startingCell.x - farthestCell.xDistanceFromStart;
   } else {
-    farthestCell.x = startingCell.x + farthestCell.xDistanceFromStart;
+    farthestCell.x = startingCell.x + farthestCell.xDistanceFromStart - 1;
   }
-  if (startingCell.y > Math.round(sizeY / 2)) {
+  if (startingCell.y > Math.floor(sizeY / 2)) {
     farthestCell.y = startingCell.y - farthestCell.yDistanceFromStart;
   } else {
-    farthestCell.y = startingCell.y + farthestCell.yDistanceFromStart;
+    farthestCell.y = startingCell.y + farthestCell.yDistanceFromStart - 1;
   }
+  console.log('startingCell', startingCell);
+  console.log('farthestCell', farthestCell);
 
   return farthestCell;
 };
 
 const setExit = (sizeX, sizeY, mapArray) => {
   const exitCell = findFarthestCellFromStart(sizeX, sizeY);
-  const xVariance = randomNumGenerator(0, Math.round(sizeX / 4));
-  const yVariance = randomNumGenerator(0, Math.round(sizeY / 4));
+  const xVariance = randomNumGenerator(0, Math.floor(sizeX / 4));
+  const yVariance = randomNumGenerator(0, Math.floor(sizeY / 4));
+  console.log('xVariance', xVariance);
+  console.log('yVariance', yVariance);
   if (exitCell.x > Math.round(sizeX / 2)) {
     exitCell.x -= xVariance;
   } else {
@@ -80,7 +84,8 @@ const setExit = (sizeX, sizeY, mapArray) => {
     exitCell.y += yVariance;
   }
   const workingArray = mapArray;
-  workingArray[exitCell.y][exitCell.x].cellType = 2;
+  console.log('exitCell', exitCell);
+  workingArray[exitCell.x][exitCell.y].cellType = 2;
   return workingArray;
 };
 
@@ -115,4 +120,4 @@ const mapGenerator = (sizeX, sizeY) => {
   return mapArray;
 };
 
-mapGenerator(20, 20);
+mapGenerator(16, 26);
