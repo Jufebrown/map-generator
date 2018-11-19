@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 // generate an array of cells based on given sizes
 const startingCell = {};
+const currentCell = {};
 
 const generateBaseMapArray = (sizeX, sizeY) => {
   const mapArray = new Array(sizeY);
@@ -52,7 +53,9 @@ const designateStartingCell = (sizeX, sizeY, mapArray) => {
 
 const getLargerValue = (value1, value2) => {
   const result1 = Math.abs(value1 - value2);
-  const result2 = Math.abs(value2 - value1);
+  const result2 = Math.abs(value1 - 0);
+  console.log('result1', result1);
+  console.log('result2', result2);
   return Math.max(result1, result2);
 };
 
@@ -61,6 +64,10 @@ const findFarthestCell = (sizeX, sizeY) => {
   farthestCell.xDistanceFromStart = getLargerValue(startingCell.x, sizeX - 1);
   farthestCell.yDistanceFromStart = getLargerValue(startingCell.y, sizeY - 1);
   console.log('farthestCell', farthestCell);
+};
+
+const moveNorthOneCell = () => {
+  currentCell.x;
 };
 
 const drawMap = (sizeX, sizeY, mapArray) => {
