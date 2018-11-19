@@ -39,10 +39,16 @@ const randomNumGenerator = (loLimit, hiLimit) => Math.floor(Math.random() * (hiL
 const designateStartingCell = (sizeX, sizeY, mapArray) => {
   const workingArray = mapArray;
   const numberOfCells = sizeX * sizeY;
-  const startingCell = workingArray[randomNumGenerator(0, numberOfCells)];
+  startingCell = workingArray[randomNumGenerator(0, numberOfCells)];
   startingCell.startingCell = true;
   startingCell.cellType = 1;
   return workingArray;
+};
+
+const findFarthestCell = (sizeX, sizeY) => {
+  const farthestCellCoordinates = {};
+  farthestCellCoordinates.x = Math.abs(startingCell.x - sizeX);
+  farthestCellCoordinates.y = Math.abs(startingCell.y - sizeY);
 };
 
 const drawMap = (sizeX, mapArray) => {
