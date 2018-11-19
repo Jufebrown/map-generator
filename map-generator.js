@@ -1,5 +1,6 @@
 /* eslint-disable linebreak-style */
 // generate an array of cells based on given sizes
+const startingCell = {};
 
 const generateBaseMapArray = (sizeX, sizeY) => {
   const mapArray = new Array(sizeY);
@@ -42,18 +43,18 @@ const randomNumGenerator = (loLimit, hiLimit) => Math.floor(Math.random() * (hiL
 // pick one cell to be the starting position for the player
 const designateStartingCell = (sizeX, sizeY, mapArray) => {
   const workingArray = mapArray;
-  const startingXCoord = randomNumGenerator(0, sizeX);
-  const startingYCoord = randomNumGenerator(0, sizeY);
-  workingArray[startingXCoord][startingYCoord].startingCell = true;
-  workingArray[startingXCoord][startingYCoord].cellType = 1;
+  startingCell.x = randomNumGenerator(0, sizeX);
+  startingCell.y = randomNumGenerator(0, sizeY);
+  workingArray[startingCell.x][startingCell.y].startingCell = true;
+  workingArray[startingCell.x][startingCell.y].cellType = 1;
   return workingArray;
 };
 
-// const findFarthestCell = (sizeX, sizeY) => {
-//   const farthestCellCoordinates = {};
-//   farthestCellCoordinates.x = Math.abs(startingCell.x - sizeX);
-//   farthestCellCoordinates.y = Math.abs(startingCell.y - sizeY);
-// };
+const findFarthestCell = (sizeX, sizeY) => {
+  const farthestCellCoordinates = {};
+  farthestCellCoordinates.x = Math.abs(startingCell.x - sizeX);
+  farthestCellCoordinates.y = Math.abs(startingCell.y - sizeY);
+};
 
 const drawMap = (sizeX, sizeY, mapArray) => {
   const miniMap = document.querySelector('.map');
