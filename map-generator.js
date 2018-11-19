@@ -14,6 +14,7 @@ const generateBaseMapArray = (sizeX, sizeY) => {
       roomObj.x = j;
       roomObj.y = i;
       roomObj.startingCell = false;
+      roomObj.currentCell = false;
       roomObj.cellType = 0;
       roomObj.doorNorth = 0;
       roomObj.doorSouth = 0;
@@ -54,23 +55,25 @@ const designateStartingCell = (sizeX, sizeY, mapArray) => {
 //   farthestCellCoordinates.y = Math.abs(startingCell.y - sizeY);
 // };
 
-const drawMap = (sizeX, mapArray) => {
+const drawMap = (sizeX, sizeY, mapArray) => {
   const miniMap = document.querySelector('.map');
   let mapString = '';
-
-  mapArray.forEach((cell) => {
-    if (cell.x === 0) {
-      mapString += '<div class="map-row">';
+  for (let i = 0; i < sizeY; i += 1) {
+    for (let j = 0; j < sizeX; j += 1) {
+      const currentCell = mapArray[j][i];
+      if (currentCell.x === 0) {
+        mapString += '<div class="map-row">';
+      }
+      if (currentCell.cellType === 0) {
+        mapString += '<div class="cell wall"></div>';
+      } else if (currentCell.cellType === 1) {
+        mapString += '<div class="cell room"></div>';
+      }
+      if (currentCell.x === (sizeX - 1)) {
+        mapString += '</div>';
+      }
     }
-    if (cell.cellType === 0) {
-      mapString += '<div class="cell wall"></div>';
-    } else if (cell.cellType === 1) {
-      mapString += '<div class="cell room"></div>';
-    }
-    if (cell.x === (sizeX - 1)) {
-      mapString += '</div>';
-    }
-  });
+  }
 
   miniMap.innerHTML = mapString;
 };
@@ -78,7 +81,7 @@ const drawMap = (sizeX, mapArray) => {
 const mapGenerator = (sizeX, sizeY) => {
   let mapArray = generateBaseMapArray(sizeX, sizeY);
   mapArray = designateStartingCell(sizeX, sizeY, mapArray);
-  // drawMap(sizeX, mapArray);
+  drawMap(sizeX, sizeY, mapArray);
   return mapArray;
 };
 
