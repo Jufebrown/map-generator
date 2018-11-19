@@ -1,3 +1,11 @@
+.map-row {
+  width: 100%;
+  height: 22px;
+  display:flex;
+  justify-items: center;
+  align-content: center;
+}
+
 .cell {
   width: 20px;
   height: 20px;
