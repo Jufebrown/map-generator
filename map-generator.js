@@ -42,7 +42,7 @@ const isWithinBounds = (sizeX, sizeY, cellCoords) => {
   return true;
 };
 
-const cellConflictCheck = (cellCoords, mapArray) => {
+const conflictCheck = (cellCoords, mapArray) => {
   for (let i = 0; i < mapArray.length; i += 1) {
     for (let j = 0; j < mapArray[i].length; j += 1) {
       if (mapArray[i][j].x === cellCoords.x && mapArray[i][j].y === cellCoords.y) {
@@ -57,7 +57,7 @@ const cellConflictCheck = (cellCoords, mapArray) => {
 
 const getSafeRandomCell = (sizeX, sizeY, mapArray) => {
   let candidateCell = chooseRandomCellCoords(sizeX, sizeY);
-  while (!isWithinBounds(sizeX, sizeY, candidateCell) || cellConflictCheck(candidateCell, mapArray)) {
+  while (!isWithinBounds(sizeX, sizeY, candidateCell) || conflictCheck(candidateCell, mapArray)) {
     candidateCell = chooseRandomCellCoords(sizeX, sizeY);
   }
   return candidateCell;
