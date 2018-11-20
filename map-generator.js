@@ -30,7 +30,7 @@ const generateBaseMapArray = (sizeX, sizeY) => {
 
 const randomNumGenerator = (loLimit, hiLimit) => Math.floor(Math.random() * (hiLimit)) + (loLimit);
 
-const chooseRandomCellCoods = (sizeX, sizeY) => {
+const chooseRandomCellCoords = (sizeX, sizeY) => {
   const randomCell = {};
   randomCell.x = randomNumGenerator(0, sizeX);
   randomCell.y = randomNumGenerator(0, sizeY);
@@ -40,7 +40,7 @@ const chooseRandomCellCoods = (sizeX, sizeY) => {
 // pick one cell to be the starting position for the player
 const designateStartingCell = (sizeX, sizeY, mapArray) => {
   const workingArray = mapArray;
-  startingCell = chooseRandomCellCoods(sizeX, sizeY);
+  startingCell = chooseRandomCellCoords(sizeX, sizeY);
   currentCell = startingCell;
   workingArray[startingCell.x][startingCell.y].startingCell = true;
   workingArray[startingCell.x][startingCell.y].cellType = 1;
