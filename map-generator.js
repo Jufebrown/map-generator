@@ -1,6 +1,6 @@
 /* eslint-disable linebreak-style */
 // generate an array of cells based on given sizes
-const startingCell = {};
+let startingCell = {};
 let currentCell = {};
 
 const generateBaseMapArray = (sizeX, sizeY) => {
@@ -30,11 +30,17 @@ const generateBaseMapArray = (sizeX, sizeY) => {
 
 const randomNumGenerator = (loLimit, hiLimit) => Math.floor(Math.random() * (hiLimit)) + (loLimit);
 
+const chooseRandomCellCoods = (sizeX, sizeY) => {
+  const randomCell = {};
+  randomCell.x = randomNumGenerator(0, sizeX);
+  randomCell.y = randomNumGenerator(0, sizeY);
+  return randomCell;
+};
+
 // pick one cell to be the starting position for the player
 const designateStartingCell = (sizeX, sizeY, mapArray) => {
   const workingArray = mapArray;
-  startingCell.x = randomNumGenerator(0, sizeX);
-  startingCell.y = randomNumGenerator(0, sizeY);
+  startingCell = chooseRandomCellCoods(sizeX, sizeY);
   currentCell = startingCell;
   workingArray[startingCell.x][startingCell.y].startingCell = true;
   workingArray[startingCell.x][startingCell.y].cellType = 1;
@@ -69,8 +75,8 @@ const findFarthestCellFromStart = (sizeX, sizeY) => {
 
 const setExit = (sizeX, sizeY, mapArray) => {
   const exitCell = findFarthestCellFromStart(sizeX, sizeY);
-  const xVariance = randomNumGenerator(0, Math.floor(sizeX / 4));
-  const yVariance = randomNumGenerator(0, Math.floor(sizeY / 4));
+  const xVariance = randomNumGenerator(0, Math.floor(sizeX / 3));
+  const yVariance = randomNumGenerator(0, Math.floor(sizeY / 3));
   console.log('xVariance', xVariance);
   console.log('yVariance', yVariance);
   if (exitCell.x > Math.round(sizeX / 2)) {
@@ -120,4 +126,4 @@ const mapGenerator = (sizeX, sizeY) => {
   return mapArray;
 };
 
-mapGenerator(16, 26);
+mapGenerator(20, 20);
