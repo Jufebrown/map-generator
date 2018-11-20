@@ -178,7 +178,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _generateBaseMapArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./generateBaseMapArray */ \"./src/generateBaseMapArray.js\");\n/* harmony import */ var _designateStartingCell__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./designateStartingCell */ \"./src/designateStartingCell.js\");\n/* harmony import */ var _drawMap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./drawMap */ \"./src/drawMap.js\");\n/* harmony import */ var _setExit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./setExit */ \"./src/setExit.js\");\n/* eslint-disable linebreak-style */\r\n\r\n// generate an array of cells based on given sizes\r\n\r\n\r\n\r\n\r\n\r\nconst mapGenerator = (sizeX, sizeY) => {\r\n  let mapArray = Object(_generateBaseMapArray__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(sizeX, sizeY);\r\n  mapArray = Object(_designateStartingCell__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(sizeX, sizeY, mapArray);\r\n  mapArray = Object(_setExit__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(sizeX, sizeY, mapArray);\r\n  Object(_drawMap__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(sizeX, sizeY, mapArray);\r\n};\r\n\r\nmapGenerator(15, 15);\r\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mapGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mapGenerator */ \"./src/mapGenerator.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\n\r\nObject(_mapGenerator__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(15, 15);\r\n\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/mapGenerator.js":
+/*!*****************************!*\
+  !*** ./src/mapGenerator.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return mapGenerator; });\n/* harmony import */ var _generateBaseMapArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./generateBaseMapArray */ \"./src/generateBaseMapArray.js\");\n/* harmony import */ var _designateStartingCell__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./designateStartingCell */ \"./src/designateStartingCell.js\");\n/* harmony import */ var _setExit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./setExit */ \"./src/setExit.js\");\n/* harmony import */ var _drawMap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./drawMap */ \"./src/drawMap.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\n\r\n\r\n\r\nfunction mapGenerator(sizeX, sizeY) {\r\n  let mapArray = Object(_generateBaseMapArray__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(sizeX, sizeY);\r\n  mapArray = Object(_designateStartingCell__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(sizeX, sizeY, mapArray);\r\n  mapArray = Object(_setExit__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(sizeX, sizeY, mapArray);\r\n  Object(_drawMap__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(sizeX, sizeY, mapArray);\r\n}\r\n\n\n//# sourceURL=webpack:///./src/mapGenerator.js?");
 
 /***/ }),
 
