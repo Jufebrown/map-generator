@@ -5,6 +5,7 @@ import validateCell from './validateCell';
 import setPieces from './setPieces';
 import generateBaseMapArray from './generateBaseMapArray';
 import randomNumGenerator from './randomNumGenerator';
+import getSafeRandomCell from './getSafeRandomCell';
 
 let startingCell = {};
 let currentCell = {};
@@ -13,21 +14,6 @@ let currentCell = {};
 //        0 = wall
 //        1 = room
 //        2 = exit
-
-const chooseRandomCellCoords = (sizeX, sizeY) => {
-  const randomCell = {};
-  randomCell.x = randomNumGenerator(0, sizeX);
-  randomCell.y = randomNumGenerator(0, sizeY);
-  return randomCell;
-};
-
-const getSafeRandomCell = (sizeX, sizeY, mapArray) => {
-  let candidateCell = chooseRandomCellCoords(sizeX, sizeY);
-  while (!validateCell(sizeX, sizeY, candidateCell, mapArray)) {
-    candidateCell = chooseRandomCellCoords(sizeX, sizeY);
-  }
-  return candidateCell;
-};
 
 // pick one cell to be the starting position for the player
 const designateStartingCell = (sizeX, sizeY, mapArray) => {
