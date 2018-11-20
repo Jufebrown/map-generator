@@ -4,6 +4,7 @@
 import validateCell from './validateCell';
 import setPieces from './setPieces';
 import generateBaseMapArray from './generateBaseMapArray';
+import randomNumGenerator from './randomNumGenerator';
 
 let startingCell = {};
 let currentCell = {};
@@ -12,8 +13,6 @@ let currentCell = {};
 //        0 = wall
 //        1 = room
 //        2 = exit
-
-const randomNumGenerator = (loLimit, hiLimit) => Math.floor(Math.random() * (hiLimit)) + (loLimit);
 
 const chooseRandomCellCoords = (sizeX, sizeY) => {
   const randomCell = {};
