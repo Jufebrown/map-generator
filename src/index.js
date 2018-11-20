@@ -1,7 +1,6 @@
 /* eslint-disable linebreak-style */
 
 // generate an array of cells based on given sizes
-import setPieces from './setPieces';
 import generateBaseMapArray from './generateBaseMapArray';
 import designateStartingCell from './designateStartingCell';
 import drawMap from './drawMap';
