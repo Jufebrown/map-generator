@@ -26,6 +26,21 @@ const setPieces = [
     description: 'There is another hole in the ceiling here',
     cellType: 1,
   },
+  {
+    name: 'other hole up',
+    description: 'There is another hole in the ceiling here',
+    cellType: 1,
+  },
+  {
+    name: 'other hole up',
+    description: 'There is another hole in the ceiling here',
+    cellType: 1,
+  },
+  {
+    name: 'other hole up',
+    description: 'There is another hole in the ceiling here',
+    cellType: 1,
+  },
 ];
 
 export default setPieces;

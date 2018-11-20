@@ -2,4 +2,4 @@
 
 import mapGenerator from './mapGenerator';
 
-mapGenerator(15, 15);
+mapGenerator(20, 20);

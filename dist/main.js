@@ -86,6 +86,18 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/conflictCheck.js":
+/*!******************************!*\
+  !*** ./src/conflictCheck.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return conflictCheck; });\n/* eslint-disable linebreak-style */\r\nfunction conflictCheck(cellCoords, mapArray) {\r\n  for (let i = 0; i < mapArray.length; i += 1) {\r\n    for (let j = 0; j < mapArray[i].length; j += 1) {\r\n      if (mapArray[i][j].x === cellCoords.x && mapArray[i][j].y === cellCoords.y) {\r\n        if (mapArray[i][j].cellType > 0) {\r\n          return true;\r\n        }\r\n      }\r\n    }\r\n  }\r\n  return false;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/conflictCheck.js?");
+
+/***/ }),
+
 /***/ "./src/distributeSetPieces.js":
 /*!************************************!*\
   !*** ./src/distributeSetPieces.js ***!
@@ -142,7 +154,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mapGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mapGenerator */ \"./src/mapGenerator.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\n\r\nObject(_mapGenerator__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(15, 15);\r\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mapGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mapGenerator */ \"./src/mapGenerator.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\n\r\nObject(_mapGenerator__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(20, 20);\r\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -178,7 +190,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* eslint-disable linebreak-style */\r\n\r\n// cellTypes:\r\n//        0 = wall\r\n//        1 = room\r\n//        2 = exit\r\n\r\nconst setPieces = [\r\n  {\r\n    name: 'entrance',\r\n    description: 'There is a hole above you',\r\n    cellType: 2,\r\n  },\r\n  {\r\n    name: 'exit',\r\n    description: 'There is a hole in the floor leading down...',\r\n    cellType: 3,\r\n  },\r\n  {\r\n    name: 'storage room',\r\n    description: 'Lots of stuff in here.',\r\n    cellType: 1,\r\n  },\r\n  {\r\n    name: 'other hole up',\r\n    description: 'There is another hole in the ceiling here',\r\n    cellType: 1,\r\n  },\r\n];\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (setPieces);\r\n\n\n//# sourceURL=webpack:///./src/setPieces.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* eslint-disable linebreak-style */\r\n\r\n// cellTypes:\r\n//        0 = wall\r\n//        1 = room\r\n//        2 = exit\r\n\r\nconst setPieces = [\r\n  {\r\n    name: 'entrance',\r\n    description: 'There is a hole above you',\r\n    cellType: 2,\r\n  },\r\n  {\r\n    name: 'exit',\r\n    description: 'There is a hole in the floor leading down...',\r\n    cellType: 3,\r\n  },\r\n  {\r\n    name: 'storage room',\r\n    description: 'Lots of stuff in here.',\r\n    cellType: 1,\r\n  },\r\n  {\r\n    name: 'other hole up',\r\n    description: 'There is another hole in the ceiling here',\r\n    cellType: 1,\r\n  },\r\n  {\r\n    name: 'other hole up',\r\n    description: 'There is another hole in the ceiling here',\r\n    cellType: 1,\r\n  },\r\n  {\r\n    name: 'other hole up',\r\n    description: 'There is another hole in the ceiling here',\r\n    cellType: 1,\r\n  },\r\n  {\r\n    name: 'other hole up',\r\n    description: 'There is another hole in the ceiling here',\r\n    cellType: 1,\r\n  },\r\n];\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (setPieces);\r\n\n\n//# sourceURL=webpack:///./src/setPieces.js?");
 
 /***/ }),
 
@@ -190,7 +202,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* eslint-disable linebreak-s
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return validCell; });\n/* eslint-disable linebreak-style */\r\nconst isWithinBounds = (sizeX, sizeY, cellCoords) => {\r\n  if (cellCoords.x < 0 || cellCoords.x >= sizeX) { return false; }\r\n  if (cellCoords.y < 0 || cellCoords.y >= sizeY) { return false; }\r\n  return true;\r\n};\r\n\r\nconst conflictCheck = (cellCoords, mapArray) => {\r\n  for (let i = 0; i < mapArray.length; i += 1) {\r\n    for (let j = 0; j < mapArray[i].length; j += 1) {\r\n      if (mapArray[i][j].x === cellCoords.x && mapArray[i][j].y === cellCoords.y) {\r\n        if (mapArray[i][j].cellType > 0) {\r\n          return true;\r\n        }\r\n      }\r\n    }\r\n  }\r\n  return false;\r\n};\r\n\r\nfunction validCell(sizeX, sizeY, cellCoords, mapArray) {\r\n  if (!isWithinBounds(sizeX, sizeY, cellCoords) || conflictCheck(cellCoords, mapArray)) {\r\n    return false;\r\n  }\r\n  return true;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/validateCell.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return validCell; });\n/* harmony import */ var _conflictCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./conflictCheck */ \"./src/conflictCheck.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\nconst isWithinBounds = (sizeX, sizeY, cellCoords) => {\r\n  if (cellCoords.x < 0 || cellCoords.x >= sizeX) { return false; }\r\n  if (cellCoords.y < 0 || cellCoords.y >= sizeY) { return false; }\r\n  return true;\r\n};\r\n\r\nfunction validCell(sizeX, sizeY, cellCoords, mapArray) {\r\n  if (!isWithinBounds(sizeX, sizeY, cellCoords) || Object(_conflictCheck__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(cellCoords, mapArray)) {\r\n    return false;\r\n  }\r\n  return true;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/validateCell.js?");
 
 /***/ })
 
