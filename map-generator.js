@@ -43,6 +43,19 @@ const isWithinBounds = (sizeX, sizeY, cellCoords) => {
   return true;
 };
 
+const cellConflictCheck = (cellCoords, mapArray) => {
+  for (let i = 0; i < mapArray.length; i += 1) {
+    for (let j = 0; j < mapArray[i].length; j += 1) {
+      if (mapArray[i][j].x === cellCoords.x && mapArray[i][j].y === cellCoords.y) {
+        if (mapArray[i][j].cellType > 0) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+};
+
 // pick one cell to be the starting position for the player
 const designateStartingCell = (sizeX, sizeY, mapArray) => {
   const workingArray = mapArray;
