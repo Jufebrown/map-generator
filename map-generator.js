@@ -24,7 +24,6 @@ const generateBaseMapArray = (sizeX, sizeY) => {
       mapArray[j][i] = roomObj;
     }
   }
-
   return mapArray;
 };
 
@@ -56,10 +55,18 @@ const cellConflictCheck = (cellCoords, mapArray) => {
   return false;
 };
 
+const getSafeRandomCell = (sizeX, sizeY, mapArray) => {
+  let candidateCell = chooseRandomCellCoords(sizeX, sizeY);
+  while (!isWithinBounds(sizeX, sizeY, candidateCell) || cellConflictCheck(candidateCell, mapArray)) {
+    candidateCell = chooseRandomCellCoords(sizeX, sizeY);
+  }
+  return candidateCell;
+};
+
 // pick one cell to be the starting position for the player
 const designateStartingCell = (sizeX, sizeY, mapArray) => {
   const workingArray = mapArray;
-  startingCell = chooseRandomCellCoords(sizeX, sizeY);
+  startingCell = getSafeRandomCell(sizeX, sizeY, mapArray);
   currentCell = startingCell;
   workingArray[startingCell.x][startingCell.y].startingCell = true;
   workingArray[startingCell.x][startingCell.y].cellType = 1;
