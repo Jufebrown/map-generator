@@ -1,5 +1,9 @@
 /* eslint-disable linebreak-style */
+
 // generate an array of cells based on given sizes
+import validateCell from './validateCell';
+import setPieces from './setPieces';
+
 let startingCell = {};
 let currentCell = {};
 
@@ -7,24 +11,6 @@ let currentCell = {};
 //        0 = wall
 //        1 = room
 //        2 = exit
-
-const setPieces = [
-  {
-    name: 'exit',
-    description: 'There is a hole in the floor leading down...',
-    cellType: 2,
-  },
-  {
-    name: 'storage room',
-    description: 'Lots of stuff in here.',
-    cellType: 1,
-  },
-  {
-    name: 'other hole up',
-    description: 'There is another hole in the ceiling here',
-    cellType: 1,
-  },
-];
 
 const generateBaseMapArray = (sizeX, sizeY) => {
   const mapArray = new Array(sizeY);
@@ -60,28 +46,9 @@ const chooseRandomCellCoords = (sizeX, sizeY) => {
   return randomCell;
 };
 
-const isWithinBounds = (sizeX, sizeY, cellCoords) => {
-  if (cellCoords.x < 0 || cellCoords.x >= sizeX) { return false; }
-  if (cellCoords.y < 0 || cellCoords.y >= sizeY) { return false; }
-  return true;
-};
-
-const conflictCheck = (cellCoords, mapArray) => {
-  for (let i = 0; i < mapArray.length; i += 1) {
-    for (let j = 0; j < mapArray[i].length; j += 1) {
-      if (mapArray[i][j].x === cellCoords.x && mapArray[i][j].y === cellCoords.y) {
-        if (mapArray[i][j].cellType > 0) {
-          return true;
-        }
-      }
-    }
-  }
-  return false;
-};
-
 const getSafeRandomCell = (sizeX, sizeY, mapArray) => {
   let candidateCell = chooseRandomCellCoords(sizeX, sizeY);
-  while (!isWithinBounds(sizeX, sizeY, candidateCell) || conflictCheck(candidateCell, mapArray)) {
+  while (!validateCell(sizeX, sizeY, candidateCell, mapArray)) {
     candidateCell = chooseRandomCellCoords(sizeX, sizeY);
   }
   return candidateCell;
