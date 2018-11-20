@@ -37,6 +37,12 @@ const chooseRandomCellCoords = (sizeX, sizeY) => {
   return randomCell;
 };
 
+const isWithinBounds = (sizeX, sizeY, cellCoords) => {
+  if (cellCoords.x < 0 || cellCoords.x >= sizeX) { return false; }
+  if (cellCoords.y < 0 || cellCoords.y >= sizeY) { return false; }
+  return true;
+};
+
 // pick one cell to be the starting position for the player
 const designateStartingCell = (sizeX, sizeY, mapArray) => {
   const workingArray = mapArray;
@@ -67,9 +73,6 @@ const findFarthestCellFromStart = (sizeX, sizeY) => {
   } else {
     farthestCell.y = startingCell.y + farthestCell.yDistanceFromStart - 1;
   }
-  console.log('startingCell', startingCell);
-  console.log('farthestCell', farthestCell);
-
   return farthestCell;
 };
 
@@ -77,8 +80,6 @@ const setExit = (sizeX, sizeY, mapArray) => {
   const exitCell = findFarthestCellFromStart(sizeX, sizeY);
   const xVariance = randomNumGenerator(0, Math.floor(sizeX / 3));
   const yVariance = randomNumGenerator(0, Math.floor(sizeY / 3));
-  console.log('xVariance', xVariance);
-  console.log('yVariance', yVariance);
   if (exitCell.x > Math.round(sizeX / 2)) {
     exitCell.x -= xVariance;
   } else {
@@ -90,7 +91,6 @@ const setExit = (sizeX, sizeY, mapArray) => {
     exitCell.y += yVariance;
   }
   const workingArray = mapArray;
-  console.log('exitCell', exitCell);
   workingArray[exitCell.x][exitCell.y].cellType = 2;
   return workingArray;
 };
@@ -126,4 +126,4 @@ const mapGenerator = (sizeX, sizeY) => {
   return mapArray;
 };
 
-mapGenerator(20, 20);
+mapGenerator(15, 15);
