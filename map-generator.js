@@ -44,6 +44,7 @@ const generateBaseMapArray = (sizeX, sizeY) => {
       roomObj.doorSouth = 0;
       roomObj.doorEast = 0;
       roomObj.doorWest = 0;
+      roomObj.description = '';
       mapArray[j][i] = roomObj;
     }
   }
