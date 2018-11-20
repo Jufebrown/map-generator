@@ -8,7 +8,7 @@ import designateStartingCell from './designateStartingCell';
 import findFarthestCellFromStart from './findFarthestCellFromStart';
 
 const setExit = (sizeX, sizeY, mapArray) => {
-  const exitCell = findFarthestCellFromStart(sizeX, sizeY, startingCell);
+  const exitCell = findFarthestCellFromStart(sizeX, sizeY, mapArray);
   const xVariance = randomNumGenerator(0, Math.floor(sizeX / 3));
   const yVariance = randomNumGenerator(0, Math.floor(sizeY / 3));
   if (exitCell.x > Math.round(sizeX / 2)) {

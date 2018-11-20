@@ -1,8 +1,10 @@
 /* eslint-disable linebreak-style */
 import getLargerValue from './getLargerValue';
+import getStartingCell from './getStartingCell';
 
-export default function findFarthestCellFromStart(sizeX, sizeY, startingCell) {
+export default function findFarthestCellFromStart(sizeX, sizeY, mapArray) {
   const farthestCell = {};
+  const startingCell = getStartingCell(mapArray);
   farthestCell.xDistanceFromStart = getLargerValue(startingCell.x, sizeX - 1);
   farthestCell.yDistanceFromStart = getLargerValue(startingCell.y, sizeY - 1);
   if (startingCell.x > Math.floor(sizeX / 2)) {
