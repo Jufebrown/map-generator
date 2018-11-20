@@ -5,29 +5,7 @@ import setPieces from './setPieces';
 import generateBaseMapArray from './generateBaseMapArray';
 import randomNumGenerator from './randomNumGenerator';
 import designateStartingCell from './designateStartingCell';
-
-const getLargerValue = (value1, value2) => {
-  const result1 = Math.abs(value1 - value2);
-  const result2 = Math.abs(value1 - 0);
-  return Math.max(result1, result2);
-};
-
-const findFarthestCellFromStart = (sizeX, sizeY) => {
-  const farthestCell = {};
-  farthestCell.xDistanceFromStart = getLargerValue(startingCell.x, sizeX - 1);
-  farthestCell.yDistanceFromStart = getLargerValue(startingCell.y, sizeY - 1);
-  if (startingCell.x > Math.floor(sizeX / 2)) {
-    farthestCell.x = startingCell.x - farthestCell.xDistanceFromStart;
-  } else {
-    farthestCell.x = startingCell.x + farthestCell.xDistanceFromStart - 1;
-  }
-  if (startingCell.y > Math.floor(sizeY / 2)) {
-    farthestCell.y = startingCell.y - farthestCell.yDistanceFromStart;
-  } else {
-    farthestCell.y = startingCell.y + farthestCell.yDistanceFromStart - 1;
-  }
-  return farthestCell;
-};
+import findFarthestCellFromStart from './findFarthestCellFromStart';
 
 const setExit = (sizeX, sizeY, mapArray) => {
   const exitCell = findFarthestCellFromStart(sizeX, sizeY);
