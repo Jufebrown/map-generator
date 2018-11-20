@@ -1,4 +1,10 @@
 /* eslint-disable linebreak-style */
+
+// cellTypes:
+//        0 = wall
+//        1 = room
+//        2 = exit
+
 const setPieces = [
   {
     name: 'exit',

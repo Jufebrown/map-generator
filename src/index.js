@@ -1,7 +1,6 @@
 /* eslint-disable linebreak-style */
 
 // generate an array of cells based on given sizes
-import validateCell from './validateCell';
 import setPieces from './setPieces';
 import generateBaseMapArray from './generateBaseMapArray';
 import randomNumGenerator from './randomNumGenerator';
@@ -9,11 +8,6 @@ import getSafeRandomCell from './getSafeRandomCell';
 
 let startingCell = {};
 let currentCell = {};
-
-// cellTypes:
-//        0 = wall
-//        1 = room
-//        2 = exit
 
 // pick one cell to be the starting position for the player
 const designateStartingCell = (sizeX, sizeY, mapArray) => {
