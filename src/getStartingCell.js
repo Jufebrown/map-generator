@@ -2,7 +2,7 @@
 export default function getStartingCell(mapArray) {
   for (let i = 0; i < mapArray.length; i += 1) {
     for (let j = 0; j < mapArray[i].length; j += 1) {
-      if (mapArray[i][j].startingCell === true) {
+      if (mapArray[i][j].cellType === 2) {
         const startingCell = mapArray[i][j];
         return startingCell;
       }

@@ -86,15 +86,15 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/designateStartingCell.js":
-/*!**************************************!*\
-  !*** ./src/designateStartingCell.js ***!
-  \**************************************/
+/***/ "./src/distributeSetPieces.js":
+/*!************************************!*\
+  !*** ./src/distributeSetPieces.js ***!
+  \************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return designateStartingCell; });\n/* harmony import */ var _getSafeRandomCell__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getSafeRandomCell */ \"./src/getSafeRandomCell.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\n// pick one cell to be the starting position for the player\r\nfunction designateStartingCell(sizeX, sizeY, mapArray) {\r\n  const workingArray = mapArray;\r\n  const startingCell = Object(_getSafeRandomCell__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(sizeX, sizeY, mapArray);\r\n  workingArray[startingCell.x][startingCell.y].startingCell = true;\r\n  workingArray[startingCell.x][startingCell.y].cellType = 2;\r\n  return workingArray;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/designateStartingCell.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return distributeSetPieces; });\n/* harmony import */ var _setPieces__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./setPieces */ \"./src/setPieces.js\");\n/* harmony import */ var _getSafeRandomCell__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getSafeRandomCell */ \"./src/getSafeRandomCell.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\n\r\nfunction distributeSetPieces(sizeX, sizeY, mapArray) {\r\n  const workingArray = mapArray;\r\n  for (let i = 0; i < _setPieces__WEBPACK_IMPORTED_MODULE_0__[\"default\"].length; i += 1) {\r\n    const setPiece = _setPieces__WEBPACK_IMPORTED_MODULE_0__[\"default\"][i];\r\n    let setPieceCell = {};\r\n    setPieceCell = Object(_getSafeRandomCell__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(sizeX, sizeY, mapArray);\r\n    workingArray[setPieceCell.x][setPieceCell.y].cellType = setPiece.cellType;\r\n    workingArray[setPieceCell.x][setPieceCell.y].description = setPiece.description;\r\n  }\r\n  return workingArray;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/distributeSetPieces.js?");
 
 /***/ }),
 
@@ -106,19 +106,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return drawMap; });\n/* eslint-disable linebreak-style */\r\n\r\nfunction drawMap(sizeX, sizeY, mapArray) {\r\n  const miniMap = document.querySelector('.map');\r\n  let mapString = '';\r\n  for (let i = 0; i < sizeY; i += 1) {\r\n    for (let j = 0; j < sizeX; j += 1) {\r\n      const currentCell = mapArray[j][i];\r\n      if (currentCell.x === 0) {\r\n        mapString += '<div class=\"map-row\">';\r\n      }\r\n      switch (currentCell.cellType) {\r\n        case 0:\r\n          mapString += '<div class=\"cell wall\"></div>';\r\n          break;\r\n        case 1:\r\n          mapString += '<div class=\"cell room\"></div>';\r\n          break;\r\n        case 2:\r\n          mapString += '<div class=\"cell room start\"></div>';\r\n          break;\r\n        case 3:\r\n          mapString += '<div class=\"cell room exit\"></div>';\r\n          break;\r\n        default:\r\n          mapString += '<div class=\"cell wall\"></div>';\r\n      }\r\n      if (currentCell.x === (sizeX - 1)) {\r\n        mapString += '</div>';\r\n      }\r\n    }\r\n  }\r\n  miniMap.innerHTML = mapString;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/drawMap.js?");
-
-/***/ }),
-
-/***/ "./src/findFarthestCellFromStart.js":
-/*!******************************************!*\
-  !*** ./src/findFarthestCellFromStart.js ***!
-  \******************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return findFarthestCellFromStart; });\n/* harmony import */ var _getLargerValue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getLargerValue */ \"./src/getLargerValue.js\");\n/* harmony import */ var _getStartingCell__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getStartingCell */ \"./src/getStartingCell.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\n\r\nfunction findFarthestCellFromStart(sizeX, sizeY, mapArray) {\r\n  const farthestCell = {};\r\n  const startingCell = Object(_getStartingCell__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(mapArray);\r\n  farthestCell.xDistanceFromStart = Object(_getLargerValue__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(startingCell.x, sizeX - 1);\r\n  farthestCell.yDistanceFromStart = Object(_getLargerValue__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(startingCell.y, sizeY - 1);\r\n  if (startingCell.x > Math.floor(sizeX / 2)) {\r\n    farthestCell.x = startingCell.x - farthestCell.xDistanceFromStart;\r\n  } else {\r\n    farthestCell.x = startingCell.x + farthestCell.xDistanceFromStart - 1;\r\n  }\r\n  if (startingCell.y > Math.floor(sizeY / 2)) {\r\n    farthestCell.y = startingCell.y - farthestCell.yDistanceFromStart;\r\n  } else {\r\n    farthestCell.y = startingCell.y + farthestCell.yDistanceFromStart - 1;\r\n  }\r\n  return farthestCell;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/findFarthestCellFromStart.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return drawMap; });\n/* eslint-disable linebreak-style */\r\n\r\nfunction drawMap(sizeX, sizeY, mapArray) {\r\n  const miniMap = document.querySelector('.map');\r\n  let mapString = '';\r\n  for (let i = 0; i < sizeY; i += 1) {\r\n    for (let j = 0; j < sizeX; j += 1) {\r\n      const currentCell = mapArray[j][i];\r\n      if (currentCell.x === 0) {\r\n        mapString += '<div class=\"map-row\">';\r\n      }\r\n      switch (currentCell.cellType) {\r\n        case 0:\r\n          mapString += '<div class=\"cell wall\"></div>';\r\n          break;\r\n        case 1:\r\n          mapString += '<div class=\"cell room\"></div>';\r\n          break;\r\n        case 2:\r\n          mapString += '<div class=\"cell room start\"></div>';\r\n          break;\r\n        case 3:\r\n          mapString += '<div class=\"cell room exit\"></div>';\r\n          break;\r\n        default:\r\n          break;\r\n      }\r\n      if (currentCell.x === (sizeX - 1)) {\r\n        mapString += '</div>';\r\n      }\r\n    }\r\n  }\r\n  miniMap.innerHTML = mapString;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/drawMap.js?");
 
 /***/ }),
 
@@ -134,18 +122,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ }),
 
-/***/ "./src/getLargerValue.js":
-/*!*******************************!*\
-  !*** ./src/getLargerValue.js ***!
-  \*******************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return getLargerValue; });\n/* eslint-disable linebreak-style */\r\n\r\nfunction getLargerValue(value1, value2) {\r\n  const result1 = Math.abs(value1 - value2);\r\n  const result2 = Math.abs(value1 - 0);\r\n  return Math.max(result1, result2);\r\n}\r\n\n\n//# sourceURL=webpack:///./src/getLargerValue.js?");
-
-/***/ }),
-
 /***/ "./src/getSafeRandomCell.js":
 /*!**********************************!*\
   !*** ./src/getSafeRandomCell.js ***!
@@ -155,18 +131,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return getSafeRandomCell; });\n/* harmony import */ var _validateCell__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validateCell */ \"./src/validateCell.js\");\n/* harmony import */ var _randomNumGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./randomNumGenerator */ \"./src/randomNumGenerator.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\n\r\nconst chooseRandomCellCoords = (sizeX, sizeY) => {\r\n  const randomCell = {};\r\n  randomCell.x = Object(_randomNumGenerator__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(0, sizeX);\r\n  randomCell.y = Object(_randomNumGenerator__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(0, sizeY);\r\n  return randomCell;\r\n};\r\n\r\nfunction getSafeRandomCell(sizeX, sizeY, mapArray) {\r\n  let candidateCell = chooseRandomCellCoords(sizeX, sizeY);\r\n  while (!Object(_validateCell__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(sizeX, sizeY, candidateCell, mapArray)) {\r\n    candidateCell = chooseRandomCellCoords(sizeX, sizeY);\r\n  }\r\n  return candidateCell;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/getSafeRandomCell.js?");
-
-/***/ }),
-
-/***/ "./src/getStartingCell.js":
-/*!********************************!*\
-  !*** ./src/getStartingCell.js ***!
-  \********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return getStartingCell; });\n/* eslint-disable linebreak-style */\r\nfunction getStartingCell(mapArray) {\r\n  for (let i = 0; i < mapArray.length; i += 1) {\r\n    for (let j = 0; j < mapArray[i].length; j += 1) {\r\n      if (mapArray[i][j].startingCell === true) {\r\n        const startingCell = mapArray[i][j];\r\n        return startingCell;\r\n      }\r\n    }\r\n  }\r\n  return null;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/getStartingCell.js?");
 
 /***/ }),
 
@@ -190,7 +154,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _map
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return mapGenerator; });\n/* harmony import */ var _generateBaseMapArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./generateBaseMapArray */ \"./src/generateBaseMapArray.js\");\n/* harmony import */ var _designateStartingCell__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./designateStartingCell */ \"./src/designateStartingCell.js\");\n/* harmony import */ var _setExit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./setExit */ \"./src/setExit.js\");\n/* harmony import */ var _drawMap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./drawMap */ \"./src/drawMap.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\n\r\n\r\n\r\nfunction mapGenerator(sizeX, sizeY) {\r\n  let mapArray = Object(_generateBaseMapArray__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(sizeX, sizeY);\r\n  mapArray = Object(_designateStartingCell__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(sizeX, sizeY, mapArray);\r\n  mapArray = Object(_setExit__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(sizeX, sizeY, mapArray);\r\n  Object(_drawMap__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(sizeX, sizeY, mapArray);\r\n}\r\n\n\n//# sourceURL=webpack:///./src/mapGenerator.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return mapGenerator; });\n/* harmony import */ var _generateBaseMapArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./generateBaseMapArray */ \"./src/generateBaseMapArray.js\");\n/* harmony import */ var _drawMap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./drawMap */ \"./src/drawMap.js\");\n/* harmony import */ var _distributeSetPieces__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./distributeSetPieces */ \"./src/distributeSetPieces.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\n\r\n\r\nfunction mapGenerator(sizeX, sizeY) {\r\n  let mapArray = Object(_generateBaseMapArray__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(sizeX, sizeY);\r\n  mapArray = Object(_distributeSetPieces__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(sizeX, sizeY, mapArray);\r\n  Object(_drawMap__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(sizeX, sizeY, mapArray);\r\n}\r\n\n\n//# sourceURL=webpack:///./src/mapGenerator.js?");
 
 /***/ }),
 
@@ -206,15 +170,15 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ }),
 
-/***/ "./src/setExit.js":
-/*!************************!*\
-  !*** ./src/setExit.js ***!
-  \************************/
+/***/ "./src/setPieces.js":
+/*!**************************!*\
+  !*** ./src/setPieces.js ***!
+  \**************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return setExit; });\n/* harmony import */ var _randomNumGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./randomNumGenerator */ \"./src/randomNumGenerator.js\");\n/* harmony import */ var _findFarthestCellFromStart__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./findFarthestCellFromStart */ \"./src/findFarthestCellFromStart.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\n\r\nfunction setExit(sizeX, sizeY, mapArray) {\r\n  const exitCell = Object(_findFarthestCellFromStart__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(sizeX, sizeY, mapArray);\r\n  const xVariance = Object(_randomNumGenerator__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(0, Math.floor(sizeX / 3));\r\n  const yVariance = Object(_randomNumGenerator__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(0, Math.floor(sizeY / 3));\r\n  if (exitCell.x > Math.round(sizeX / 2)) {\r\n    exitCell.x -= xVariance;\r\n  } else {\r\n    exitCell.x += xVariance;\r\n  }\r\n  if (exitCell.y > Math.round(sizeY / 2)) {\r\n    exitCell.y -= yVariance;\r\n  } else {\r\n    exitCell.y += yVariance;\r\n  }\r\n  const workingArray = mapArray;\r\n  workingArray[exitCell.x][exitCell.y].cellType = 3;\r\n  return workingArray;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/setExit.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* eslint-disable linebreak-style */\r\n\r\n// cellTypes:\r\n//        0 = wall\r\n//        1 = room\r\n//        2 = exit\r\n\r\nconst setPieces = [\r\n  {\r\n    name: 'entrance',\r\n    description: 'There is a hole above you',\r\n    cellType: 2,\r\n  },\r\n  {\r\n    name: 'exit',\r\n    description: 'There is a hole in the floor leading down...',\r\n    cellType: 3,\r\n  },\r\n  {\r\n    name: 'storage room',\r\n    description: 'Lots of stuff in here.',\r\n    cellType: 1,\r\n  },\r\n  {\r\n    name: 'other hole up',\r\n    description: 'There is another hole in the ceiling here',\r\n    cellType: 1,\r\n  },\r\n];\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (setPieces);\r\n\n\n//# sourceURL=webpack:///./src/setPieces.js?");
 
 /***/ }),
 

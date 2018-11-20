@@ -23,7 +23,7 @@ export default function drawMap(sizeX, sizeY, mapArray) {
           mapString += '<div class="cell room exit"></div>';
           break;
         default:
-          mapString += '<div class="cell wall"></div>';
+          break;
       }
       if (currentCell.x === (sizeX - 1)) {
         mapString += '</div>';
