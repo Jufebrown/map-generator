@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-import validateCell from './validateCell';
+import validCell from './validateCell';
 import randomNumGenerator from './randomNumGenerator';
 
 const chooseRandomCellCoords = (sizeX, sizeY) => {
@@ -11,7 +11,7 @@ const chooseRandomCellCoords = (sizeX, sizeY) => {
 
 export default function getSafeRandomCell(sizeX, sizeY, mapArray) {
   let candidateCell = chooseRandomCellCoords(sizeX, sizeY);
-  while (!validateCell(sizeX, sizeY, candidateCell, mapArray)) {
+  while (!validCell(sizeX, sizeY, candidateCell, mapArray)) {
     candidateCell = chooseRandomCellCoords(sizeX, sizeY);
   }
   return candidateCell;

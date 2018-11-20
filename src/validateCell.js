@@ -18,7 +18,7 @@ const conflictCheck = (cellCoords, mapArray) => {
   return false;
 };
 
-export default function validateCell(sizeX, sizeY, cellCoords, mapArray) {
+export default function validCell(sizeX, sizeY, cellCoords, mapArray) {
   if (!isWithinBounds(sizeX, sizeY, cellCoords) || conflictCheck(cellCoords, mapArray)) {
     return false;
   }
