@@ -4,20 +4,7 @@
 import setPieces from './setPieces';
 import generateBaseMapArray from './generateBaseMapArray';
 import randomNumGenerator from './randomNumGenerator';
-import getSafeRandomCell from './getSafeRandomCell';
-
-let startingCell = {};
-let currentCell = {};
-
-// pick one cell to be the starting position for the player
-const designateStartingCell = (sizeX, sizeY, mapArray) => {
-  const workingArray = mapArray;
-  startingCell = getSafeRandomCell(sizeX, sizeY, mapArray);
-  currentCell = startingCell;
-  workingArray[startingCell.x][startingCell.y].startingCell = true;
-  workingArray[startingCell.x][startingCell.y].cellType = 1;
-  return workingArray;
-};
+import designateStartingCell from './designateStartingCell';
 
 const getLargerValue = (value1, value2) => {
   const result1 = Math.abs(value1 - value2);
