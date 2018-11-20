@@ -6,6 +6,7 @@ import generateBaseMapArray from './generateBaseMapArray';
 import randomNumGenerator from './randomNumGenerator';
 import designateStartingCell from './designateStartingCell';
 import findFarthestCellFromStart from './findFarthestCellFromStart';
+import drawMap from './drawMap';
 
 const setExit = (sizeX, sizeY, mapArray) => {
   const exitCell = findFarthestCellFromStart(sizeX, sizeY, mapArray);
@@ -22,7 +23,7 @@ const setExit = (sizeX, sizeY, mapArray) => {
     exitCell.y += yVariance;
   }
   const workingArray = mapArray;
-  workingArray[exitCell.x][exitCell.y].cellType = 2;
+  workingArray[exitCell.x][exitCell.y].cellType = 3;
   return workingArray;
 };
 
@@ -31,7 +32,6 @@ const mapGenerator = (sizeX, sizeY) => {
   mapArray = designateStartingCell(sizeX, sizeY, mapArray);
   mapArray = setExit(sizeX, sizeY, mapArray);
   drawMap(sizeX, sizeY, mapArray);
-  return mapArray;
 };
 
 mapGenerator(15, 15);

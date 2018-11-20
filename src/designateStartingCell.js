@@ -6,6 +6,6 @@ export default function designateStartingCell(sizeX, sizeY, mapArray) {
   const workingArray = mapArray;
   const startingCell = getSafeRandomCell(sizeX, sizeY, mapArray);
   workingArray[startingCell.x][startingCell.y].startingCell = true;
-  workingArray[startingCell.x][startingCell.y].cellType = 1;
+  workingArray[startingCell.x][startingCell.y].cellType = 2;
   return workingArray;
 }

@@ -9,10 +9,21 @@ export default function drawMap(sizeX, sizeY, mapArray) {
       if (currentCell.x === 0) {
         mapString += '<div class="map-row">';
       }
-      if (currentCell.cellType === 0) {
-        mapString += '<div class="cell wall"></div>';
-      } else if (currentCell.cellType > 0) {
-        mapString += '<div class="cell room"></div>';
+      switch (currentCell.cellType) {
+        case 0:
+          mapString += '<div class="cell wall"></div>';
+          break;
+        case 1:
+          mapString += '<div class="cell room"></div>';
+          break;
+        case 2:
+          mapString += '<div class="cell room start"></div>';
+          break;
+        case 3:
+          mapString += '<div class="cell room exit"></div>';
+          break;
+        default:
+          mapString += '<div class="cell wall"></div>';
       }
       if (currentCell.x === (sizeX - 1)) {
         mapString += '</div>';

@@ -7,9 +7,14 @@
 
 const setPieces = [
   {
+    name: 'entrance',
+    description: 'There is a hole above you',
+    cellType: 2,
+  },
+  {
     name: 'exit',
     description: 'There is a hole in the floor leading down...',
-    cellType: 2,
+    cellType: 3,
   },
   {
     name: 'storage room',
