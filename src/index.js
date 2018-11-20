@@ -8,7 +8,7 @@ import designateStartingCell from './designateStartingCell';
 import findFarthestCellFromStart from './findFarthestCellFromStart';
 
 const setExit = (sizeX, sizeY, mapArray) => {
-  const exitCell = findFarthestCellFromStart(sizeX, sizeY);
+  const exitCell = findFarthestCellFromStart(sizeX, sizeY, startingCell);
   const xVariance = randomNumGenerator(0, Math.floor(sizeX / 3));
   const yVariance = randomNumGenerator(0, Math.floor(sizeY / 3));
   if (exitCell.x > Math.round(sizeX / 2)) {
@@ -31,7 +31,7 @@ const drawMap = (sizeX, sizeY, mapArray) => {
   let mapString = '';
   for (let i = 0; i < sizeY; i += 1) {
     for (let j = 0; j < sizeX; j += 1) {
-      currentCell = mapArray[j][i];
+      const currentCell = mapArray[j][i];
       if (currentCell.x === 0) {
         mapString += '<div class="map-row">';
       }
