@@ -5,10 +5,7 @@ import getNeighborCellCoords from './getNeighborCellCoords';
 import assignDoor from './assignDoor';
 import getDisplacementBetweenCells from './getDisplacementBetweenCells';
 import getSpecificSetPiece from './getSpecificSetPiece';
-
-const getDirection = (mapArray) => {
-
-};
+import getAllSetPieces from './getAllSetPieces';
 
 export default function makePaths(sizeX, sizeY, mapArray) {
   const directions = ['north', 'south', 'east', 'west'];
@@ -18,6 +15,7 @@ export default function makePaths(sizeX, sizeY, mapArray) {
   let currentCell = startingCell;
   let nextCell = getNeighborCellCoords(currentCell, direction);
   let workingArray = mapArray;
+  const setPieceArray = getAllSetPieces(mapArray);
 
 
   setPieceArray.array.forEach((setPiece) => {
