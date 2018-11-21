@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-import validCell from './validateCell';
+import validCell from './validCell';
 import randomNumGenerator from './randomNumGenerator';
 
 const chooseRandomCellCoords = (sizeX, sizeY) => {

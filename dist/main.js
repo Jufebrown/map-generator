@@ -130,7 +130,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return generateBaseMapArray; });\n/* eslint-disable linebreak-style */\r\nfunction generateBaseMapArray(sizeX, sizeY) {\r\n  const mapArray = new Array(sizeY);\r\n\r\n  for (let row = 0; row < sizeY; row += 1) {\r\n    mapArray[row] = new Array(sizeX);\r\n  }\r\n\r\n  for (let i = 0; i < sizeY; i += 1) {\r\n    for (let j = 0; j < sizeX; j += 1) {\r\n      const roomObj = {};\r\n      roomObj.x = j;\r\n      roomObj.y = i;\r\n      roomObj.startingCell = false;\r\n      roomObj.cellType = 0;\r\n      roomObj.doorNorth = 0;\r\n      roomObj.doorSouth = 0;\r\n      roomObj.doorEast = 0;\r\n      roomObj.doorWest = 0;\r\n      roomObj.description = '';\r\n      mapArray[j][i] = roomObj;\r\n    }\r\n  }\r\n  return mapArray;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/generateBaseMapArray.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return generateBaseMapArray; });\n/* eslint-disable linebreak-style */\r\nfunction generateBaseMapArray(sizeX, sizeY) {\r\n  const mapArray = new Array(sizeY);\r\n\r\n  for (let row = 0; row < sizeY; row += 1) {\r\n    mapArray[row] = new Array(sizeX);\r\n  }\r\n\r\n  for (let i = 0; i < sizeY; i += 1) {\r\n    for (let j = 0; j < sizeX; j += 1) {\r\n      const roomObj = {};\r\n      roomObj.x = j;\r\n      roomObj.y = i;\r\n      roomObj.startingCell = false;\r\n      roomObj.cellType = 0;\r\n      roomObj.doors = [0, 0, 0, 0];\r\n      roomObj.description = '';\r\n      mapArray[j][i] = roomObj;\r\n    }\r\n  }\r\n  return mapArray;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/generateBaseMapArray.js?");
 
 /***/ }),
 
@@ -142,7 +142,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return getSafeRandomCell; });\n/* harmony import */ var _validateCell__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validateCell */ \"./src/validateCell.js\");\n/* harmony import */ var _randomNumGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./randomNumGenerator */ \"./src/randomNumGenerator.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\n\r\nconst chooseRandomCellCoords = (sizeX, sizeY) => {\r\n  const randomCell = {};\r\n  randomCell.x = Object(_randomNumGenerator__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(0, sizeX);\r\n  randomCell.y = Object(_randomNumGenerator__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(0, sizeY);\r\n  return randomCell;\r\n};\r\n\r\nfunction getSafeRandomCell(sizeX, sizeY, mapArray) {\r\n  let candidateCell = chooseRandomCellCoords(sizeX, sizeY);\r\n  while (!Object(_validateCell__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(sizeX, sizeY, candidateCell, mapArray)) {\r\n    candidateCell = chooseRandomCellCoords(sizeX, sizeY);\r\n  }\r\n  return candidateCell;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/getSafeRandomCell.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return getSafeRandomCell; });\n/* harmony import */ var _validCell__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validCell */ \"./src/validCell.js\");\n/* harmony import */ var _randomNumGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./randomNumGenerator */ \"./src/randomNumGenerator.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\n\r\nconst chooseRandomCellCoords = (sizeX, sizeY) => {\r\n  const randomCell = {};\r\n  randomCell.x = Object(_randomNumGenerator__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(0, sizeX);\r\n  randomCell.y = Object(_randomNumGenerator__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(0, sizeY);\r\n  return randomCell;\r\n};\r\n\r\nfunction getSafeRandomCell(sizeX, sizeY, mapArray) {\r\n  let candidateCell = chooseRandomCellCoords(sizeX, sizeY);\r\n  while (!Object(_validCell__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(sizeX, sizeY, candidateCell, mapArray)) {\r\n    candidateCell = chooseRandomCellCoords(sizeX, sizeY);\r\n  }\r\n  return candidateCell;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/getSafeRandomCell.js?");
 
 /***/ }),
 
@@ -206,15 +206,15 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* eslint-disable linebreak-s
 
 /***/ }),
 
-/***/ "./src/validateCell.js":
-/*!*****************************!*\
-  !*** ./src/validateCell.js ***!
-  \*****************************/
+/***/ "./src/validCell.js":
+/*!**************************!*\
+  !*** ./src/validCell.js ***!
+  \**************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return validCell; });\n/* harmony import */ var _conflictCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./conflictCheck */ \"./src/conflictCheck.js\");\n/* harmony import */ var _isWithinBounds__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./isWithinBounds */ \"./src/isWithinBounds.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\n\r\nfunction validCell(sizeX, sizeY, cellCoords, mapArray) {\r\n  if (!Object(_isWithinBounds__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(sizeX, sizeY, cellCoords) || Object(_conflictCheck__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(cellCoords, mapArray)) {\r\n    return false;\r\n  }\r\n  return true;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/validateCell.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return validCell; });\n/* harmony import */ var _conflictCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./conflictCheck */ \"./src/conflictCheck.js\");\n/* harmony import */ var _isWithinBounds__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./isWithinBounds */ \"./src/isWithinBounds.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\n\r\nfunction validCell(sizeX, sizeY, cellCoords, mapArray) {\r\n  if (!Object(_isWithinBounds__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(sizeX, sizeY, cellCoords) || Object(_conflictCheck__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(cellCoords, mapArray)) {\r\n    return false;\r\n  }\r\n  return true;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/validCell.js?");
 
 /***/ })
 

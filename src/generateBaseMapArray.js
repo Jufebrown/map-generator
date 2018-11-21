@@ -13,10 +13,7 @@ export default function generateBaseMapArray(sizeX, sizeY) {
       roomObj.y = i;
       roomObj.startingCell = false;
       roomObj.cellType = 0;
-      roomObj.doorNorth = 0;
-      roomObj.doorSouth = 0;
-      roomObj.doorEast = 0;
-      roomObj.doorWest = 0;
+      roomObj.doors = [0, 0, 0, 0];
       roomObj.description = '';
       mapArray[j][i] = roomObj;
     }
