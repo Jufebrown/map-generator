@@ -86,18 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/assignDoor.js":
-/*!***************************!*\
-  !*** ./src/assignDoor.js ***!
-  \***************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return assignDoor; });\n/* harmony import */ var _getNeighborCellCoords__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getNeighborCellCoords */ \"./src/getNeighborCellCoords.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\nfunction assignDoor(currentCell, direction, mapArray) {\r\n  const workingArray = mapArray;\r\n  const cellOnOtherSideOfDoor = Object(_getNeighborCellCoords__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(currentCell, direction);\r\n  switch (direction) {\r\n    case 'north':\r\n      workingArray[currentCell.x][currentCell.y].doors[0] = 1;\r\n      workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].doors[1] = 1;\r\n      workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].cellType = 1;\r\n      break;\r\n\r\n    case 'south':\r\n      workingArray[currentCell.x][currentCell.y].doors[1] = 1;\r\n      workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].doors[0] = 1;\r\n      workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].cellType = 1;\r\n      break;\r\n\r\n    case 'east':\r\n      workingArray[currentCell.x][currentCell.y].doors[2] = 1;\r\n      workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].doors[3] = 1;\r\n      workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].cellType = 1;\r\n      break;\r\n\r\n    case 'west':\r\n      workingArray[currentCell.x][currentCell.y].doors[3] = 1;\r\n      workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].doors[2] = 1;\r\n      workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].cellType = 1;\r\n      break;\r\n\r\n    default:\r\n      break;\r\n  }\r\n  return workingArray;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/assignDoor.js?");
-
-/***/ }),
-
 /***/ "./src/conflictCheck.js":
 /*!******************************!*\
   !*** ./src/conflictCheck.js ***!
@@ -146,18 +134,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ }),
 
-/***/ "./src/getNeighborCellCoords.js":
-/*!**************************************!*\
-  !*** ./src/getNeighborCellCoords.js ***!
-  \**************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return getNeighborCellCoords; });\n/* eslint-disable linebreak-style */\r\nfunction getNeighborCellCoords(currentCell, direction) {\r\n  const neighborCell = {\r\n    x: currentCell.x,\r\n    y: currentCell.y,\r\n  };\r\n\r\n  switch (direction) {\r\n    case 'north':\r\n      neighborCell.y += 1;\r\n      break;\r\n\r\n    case 'south':\r\n      neighborCell.y -= 1;\r\n      break;\r\n\r\n    case 'east':\r\n      neighborCell.x += 1;\r\n      break;\r\n\r\n    case 'west':\r\n      neighborCell.x -= 1;\r\n      break;\r\n\r\n    default:\r\n      break;\r\n  }\r\n  return neighborCell;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/getNeighborCellCoords.js?");
-
-/***/ }),
-
 /***/ "./src/getSafeRandomCell.js":
 /*!**********************************!*\
   !*** ./src/getSafeRandomCell.js ***!
@@ -167,18 +143,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return getSafeRandomCell; });\n/* harmony import */ var _validCell__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validCell */ \"./src/validCell.js\");\n/* harmony import */ var _randomNumGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./randomNumGenerator */ \"./src/randomNumGenerator.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\n\r\nconst chooseRandomCellCoords = (sizeX, sizeY) => {\r\n  const randomCell = {};\r\n  randomCell.x = Object(_randomNumGenerator__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(0, sizeX);\r\n  randomCell.y = Object(_randomNumGenerator__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(0, sizeY);\r\n  return randomCell;\r\n};\r\n\r\nfunction getSafeRandomCell(sizeX, sizeY, mapArray) {\r\n  let candidateCell = chooseRandomCellCoords(sizeX, sizeY);\r\n  while (!Object(_validCell__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(sizeX, sizeY, candidateCell, mapArray)) {\r\n    candidateCell = chooseRandomCellCoords(sizeX, sizeY);\r\n  }\r\n  return candidateCell;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/getSafeRandomCell.js?");
-
-/***/ }),
-
-/***/ "./src/getStartingCell.js":
-/*!********************************!*\
-  !*** ./src/getStartingCell.js ***!
-  \********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return getStartingCell; });\n/* eslint-disable linebreak-style */\r\nfunction getStartingCell(mapArray) {\r\n  for (let i = 0; i < mapArray.length; i += 1) {\r\n    for (let j = 0; j < mapArray[i].length; j += 1) {\r\n      if (mapArray[i][j].cellType === 2) {\r\n        const startingCell = mapArray[i][j];\r\n        return startingCell;\r\n      }\r\n    }\r\n  }\r\n  return null;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/getStartingCell.js?");
 
 /***/ }),
 
@@ -211,10 +175,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
   !*** ./src/makePaths.js ***!
   \**************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return makePaths; });\n/* harmony import */ var _randomNumGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./randomNumGenerator */ \"./src/randomNumGenerator.js\");\n/* harmony import */ var _validCell__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./validCell */ \"./src/validCell.js\");\n/* harmony import */ var _getStartingCell__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getStartingCell */ \"./src/getStartingCell.js\");\n/* harmony import */ var _getNeighborCellCoords__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./getNeighborCellCoords */ \"./src/getNeighborCellCoords.js\");\n/* harmony import */ var _assignDoor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assignDoor */ \"./src/assignDoor.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\n\r\n\r\n\r\n\r\nfunction makePaths(sizeX, sizeY, mapArray) {\r\n  const directions = ['north', 'south', 'east', 'west'];\r\n  const startingCell = Object(_getStartingCell__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(mapArray);\r\n  const direction = directions[Object(_randomNumGenerator__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(0, 4)];\r\n  let currentCell = startingCell;\r\n  let nextCell = Object(_getNeighborCellCoords__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(currentCell, direction);\r\n  let workingArray = mapArray;\r\n\r\n  if (Object(_validCell__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(sizeX, sizeY, nextCell, workingArray)) {\r\n    workingArray = Object(_assignDoor__WEBPACK_IMPORTED_MODULE_4__[\"default\"])(currentCell, direction, mapArray);\r\n    currentCell = nextCell;\r\n    nextCell = Object(_getNeighborCellCoords__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(currentCell, direction);\r\n  }\r\n  return workingArray;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/makePaths.js?");
+eval("throw new Error(\"Module parse failed: The keyword 'let' is reserved (9:2)\\nYou may need an appropriate loader to handle this file type.\\n| \\r\\n| const getDirection = (displacement) => {\\r\\n>   let\\r\\n| };\\r\\n| \\r\");\n\n//# sourceURL=webpack:///./src/makePaths.js?");
 
 /***/ }),
 

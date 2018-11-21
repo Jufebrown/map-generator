@@ -5,6 +5,10 @@ import getStartingCell from './getStartingCell';
 import getNeighborCellCoords from './getNeighborCellCoords';
 import assignDoor from './assignDoor';
 
+const getDirection = (displacement) => {
+  let
+};
+
 export default function makePaths(sizeX, sizeY, mapArray) {
   const directions = ['north', 'south', 'east', 'west'];
   const startingCell = getStartingCell(mapArray);
