@@ -19,27 +19,27 @@ const setPieces = [
   {
     name: 'storage room',
     description: 'Lots of stuff in here.',
-    cellType: 1,
+    cellType: 4,
   },
   {
     name: 'other hole up',
     description: 'There is another hole in the ceiling here',
-    cellType: 1,
+    cellType: 4,
   },
   {
     name: 'other hole up',
     description: 'There is another hole in the ceiling here',
-    cellType: 1,
+    cellType: 4,
   },
   {
     name: 'other hole up',
     description: 'There is another hole in the ceiling here',
-    cellType: 1,
+    cellType: 4,
   },
   {
     name: 'other hole up',
     description: 'There is another hole in the ceiling here',
-    cellType: 1,
+    cellType: 4,
   },
 ];
 
