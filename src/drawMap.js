@@ -13,18 +13,23 @@ export default function drawMap(sizeX, sizeY, mapArray) {
         case 0:
           mapString += '<div class="cell wall"></div>';
           break;
+
         case 1:
           mapString += '<div class="cell room"></div>';
           break;
+
         case 2:
           mapString += '<div class="cell room start"></div>';
           break;
+
         case 3:
           mapString += '<div class="cell room exit"></div>';
           break;
+
         case 4:
           mapString += '<div class="cell room"></div>';
           break;
+
         default:
           break;
       }
