@@ -4,9 +4,30 @@ import validCell from './validCell';
 import getStartingCell from './getStartingCell';
 import getNeighborCellCoords from './getNeighborCellCoords';
 import assignDoor from './assignDoor';
+import getDisplacementBetweenCells from './getDisplacementBetweenCells';
 
-const getDirection = (displacement) => {
-  let
+const getDirection = (mapArray) => {
+  const exit = {};
+  for (let i = 0; i < mapArray.length; i++) {
+    for (let j = 0; j < mapArray[i].length; j++) {
+      const currentCell = mapArray[i][j];
+      if (currentCell.cellType === 3) {
+        exit.x = currentCell.x;
+        exit.y = currentCell.y;
+      }
+    }
+  }
+
+  const setPieceArray = [];
+  mapArray.forEach((cell) => {
+    if (cell.cellType > 1) {
+      setPieceArray.push(cell);
+    }
+  });
+
+  setPieceArray.array.forEach((setPiece) => {
+    const displacement = getDisplacementBetweenCells(exit, setPiece);
+  });
 };
 
 export default function makePaths(sizeX, sizeY, mapArray) {
