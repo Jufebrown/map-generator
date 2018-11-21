@@ -8,21 +8,25 @@ export default function assignDoor(currentCell, direction, mapArray) {
     case 'north':
       workingArray[currentCell.x][currentCell.y].doors[0] = 1;
       workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].doors[1] = 1;
+      workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].cellType = 1;
       break;
 
     case 'south':
       workingArray[currentCell.x][currentCell.y].doors[1] = 1;
       workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].doors[0] = 1;
+      workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].cellType = 1;
       break;
 
     case 'east':
       workingArray[currentCell.x][currentCell.y].doors[2] = 1;
       workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].doors[3] = 1;
+      workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].cellType = 1;
       break;
 
     case 'west':
       workingArray[currentCell.x][currentCell.y].doors[3] = 1;
       workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].doors[2] = 1;
+      workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].cellType = 1;
       break;
 
     default:

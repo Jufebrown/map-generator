@@ -8,13 +8,19 @@ import assignDoor from './assignDoor';
 export default function makePaths(sizeX, sizeY, mapArray) {
   const directions = ['north', 'south', 'east', 'west'];
   const startingCell = getStartingCell(mapArray);
-  const startingDirection = directions[randomNumberGenerator(0, 3)];
+  const direction = directions[randomNumberGenerator(0, 4)];
   let currentCell = startingCell;
-  const nextCell = getNeighborCellCoords(currentCell, startingDirection);
+  const nextCell = getNeighborCellCoords(currentCell, direction);
   let workingArray = mapArray;
 
+  console.log('currentCell', currentCell);
+  console.log('direction', direction);
+  console.log('nextCell', nextCell);
+
   if (validCell(sizeX, sizeY, nextCell, workingArray)) {
-    workingArray = assignDoor(currentCell, startingDirection, mapArray);
+    workingArray = assignDoor(currentCell, direction, mapArray);
     currentCell = nextCell;
+    // nextCell = getNeighborCellCoords(currentCell, direction);
   }
+  return workingArray;
 }

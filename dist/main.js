@@ -86,6 +86,18 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/assignDoor.js":
+/*!***************************!*\
+  !*** ./src/assignDoor.js ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return assignDoor; });\n/* harmony import */ var _getNeighborCellCoords__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getNeighborCellCoords */ \"./src/getNeighborCellCoords.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\nfunction assignDoor(currentCell, direction, mapArray) {\r\n  const workingArray = mapArray;\r\n  const cellOnOtherSideOfDoor = Object(_getNeighborCellCoords__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(currentCell, direction);\r\n  switch (direction) {\r\n    case 'north':\r\n      workingArray[currentCell.x][currentCell.y].doors[0] = 1;\r\n      workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].doors[1] = 1;\r\n      workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].cellType = 1;\r\n      break;\r\n\r\n    case 'south':\r\n      workingArray[currentCell.x][currentCell.y].doors[1] = 1;\r\n      workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].doors[0] = 1;\r\n      workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].cellType = 1;\r\n      break;\r\n\r\n    case 'east':\r\n      workingArray[currentCell.x][currentCell.y].doors[2] = 1;\r\n      workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].doors[3] = 1;\r\n      workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].cellType = 1;\r\n      break;\r\n\r\n    case 'west':\r\n      workingArray[currentCell.x][currentCell.y].doors[3] = 1;\r\n      workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].doors[2] = 1;\r\n      workingArray[cellOnOtherSideOfDoor.x][cellOnOtherSideOfDoor.y].cellType = 1;\r\n      break;\r\n\r\n    default:\r\n      break;\r\n  }\r\n  return workingArray;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/assignDoor.js?");
+
+/***/ }),
+
 /***/ "./src/conflictCheck.js":
 /*!******************************!*\
   !*** ./src/conflictCheck.js ***!
@@ -130,7 +142,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return generateBaseMapArray; });\n/* eslint-disable linebreak-style */\r\nfunction generateBaseMapArray(sizeX, sizeY) {\r\n  const mapArray = new Array(sizeY);\r\n\r\n  for (let row = 0; row < sizeY; row += 1) {\r\n    mapArray[row] = new Array(sizeX);\r\n  }\r\n\r\n  for (let i = 0; i < sizeY; i += 1) {\r\n    for (let j = 0; j < sizeX; j += 1) {\r\n      const roomObj = {};\r\n      roomObj.x = j;\r\n      roomObj.y = i;\r\n      roomObj.startingCell = false;\r\n      roomObj.cellType = 0;\r\n      roomObj.doors = [0, 0, 0, 0];\r\n      roomObj.description = '';\r\n      mapArray[j][i] = roomObj;\r\n    }\r\n  }\r\n  return mapArray;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/generateBaseMapArray.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return generateBaseMapArray; });\n/* eslint-disable linebreak-style */\r\nfunction generateBaseMapArray(sizeX, sizeY) {\r\n  const mapArray = new Array(sizeY);\r\n\r\n  for (let row = 0; row < sizeY; row += 1) {\r\n    mapArray[row] = new Array(sizeX);\r\n  }\r\n\r\n  for (let i = 0; i < sizeY; i += 1) {\r\n    for (let j = 0; j < sizeX; j += 1) {\r\n      const roomObj = {};\r\n      roomObj.x = j;\r\n      roomObj.y = i;\r\n      roomObj.cellType = 0;\r\n      roomObj.doors = [0, 0, 0, 0];\r\n      roomObj.description = '';\r\n      mapArray[j][i] = roomObj;\r\n    }\r\n  }\r\n  return mapArray;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/generateBaseMapArray.js?");
+
+/***/ }),
+
+/***/ "./src/getNeighborCellCoords.js":
+/*!**************************************!*\
+  !*** ./src/getNeighborCellCoords.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return getNeighborCellCoords; });\n/* eslint-disable linebreak-style */\r\nfunction getNeighborCellCoords(currentCell, direction) {\r\n  const neighborCell = {\r\n    x: currentCell.x,\r\n    y: currentCell.y,\r\n  };\r\n\r\n  switch (direction) {\r\n    case 'north':\r\n      neighborCell.y += 1;\r\n      break;\r\n\r\n    case 'south':\r\n      neighborCell.y -= 1;\r\n      break;\r\n\r\n    case 'east':\r\n      neighborCell.x += 1;\r\n      break;\r\n\r\n    case 'west':\r\n      neighborCell.x -= 1;\r\n      break;\r\n\r\n    default:\r\n      break;\r\n  }\r\n  return neighborCell;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/getNeighborCellCoords.js?");
 
 /***/ }),
 
@@ -143,6 +167,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return getSafeRandomCell; });\n/* harmony import */ var _validCell__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validCell */ \"./src/validCell.js\");\n/* harmony import */ var _randomNumGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./randomNumGenerator */ \"./src/randomNumGenerator.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\n\r\nconst chooseRandomCellCoords = (sizeX, sizeY) => {\r\n  const randomCell = {};\r\n  randomCell.x = Object(_randomNumGenerator__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(0, sizeX);\r\n  randomCell.y = Object(_randomNumGenerator__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(0, sizeY);\r\n  return randomCell;\r\n};\r\n\r\nfunction getSafeRandomCell(sizeX, sizeY, mapArray) {\r\n  let candidateCell = chooseRandomCellCoords(sizeX, sizeY);\r\n  while (!Object(_validCell__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(sizeX, sizeY, candidateCell, mapArray)) {\r\n    candidateCell = chooseRandomCellCoords(sizeX, sizeY);\r\n  }\r\n  return candidateCell;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/getSafeRandomCell.js?");
+
+/***/ }),
+
+/***/ "./src/getStartingCell.js":
+/*!********************************!*\
+  !*** ./src/getStartingCell.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return getStartingCell; });\n/* eslint-disable linebreak-style */\r\nfunction getStartingCell(mapArray) {\r\n  for (let i = 0; i < mapArray.length; i += 1) {\r\n    for (let j = 0; j < mapArray[i].length; j += 1) {\r\n      if (mapArray[i][j].cellType === 2) {\r\n        const startingCell = mapArray[i][j];\r\n        return startingCell;\r\n      }\r\n    }\r\n  }\r\n  return null;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/getStartingCell.js?");
 
 /***/ }),
 
@@ -170,6 +206,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ }),
 
+/***/ "./src/makePaths.js":
+/*!**************************!*\
+  !*** ./src/makePaths.js ***!
+  \**************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return makePaths; });\n/* harmony import */ var _randomNumGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./randomNumGenerator */ \"./src/randomNumGenerator.js\");\n/* harmony import */ var _validCell__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./validCell */ \"./src/validCell.js\");\n/* harmony import */ var _getStartingCell__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getStartingCell */ \"./src/getStartingCell.js\");\n/* harmony import */ var _getNeighborCellCoords__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./getNeighborCellCoords */ \"./src/getNeighborCellCoords.js\");\n/* harmony import */ var _assignDoor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assignDoor */ \"./src/assignDoor.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\n\r\n\r\n\r\n\r\nfunction makePaths(sizeX, sizeY, mapArray) {\r\n  const directions = ['north', 'south', 'east', 'west'];\r\n  const startingCell = Object(_getStartingCell__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(mapArray);\r\n  const direction = directions[Object(_randomNumGenerator__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(0, 4)];\r\n  let currentCell = startingCell;\r\n  const nextCell = Object(_getNeighborCellCoords__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(currentCell, direction);\r\n  let workingArray = mapArray;\r\n\r\n  console.log('currentCell', currentCell);\r\n  console.log('direction', direction);\r\n  console.log('nextCell', nextCell);\r\n\r\n  if (Object(_validCell__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(sizeX, sizeY, nextCell, workingArray)) {\r\n    workingArray = Object(_assignDoor__WEBPACK_IMPORTED_MODULE_4__[\"default\"])(currentCell, direction, mapArray);\r\n    currentCell = nextCell;\r\n    // nextCell = getNeighborCellCoords(currentCell, direction);\r\n  }\r\n  return workingArray;\r\n}\r\n\n\n//# sourceURL=webpack:///./src/makePaths.js?");
+
+/***/ }),
+
 /***/ "./src/mapGenerator.js":
 /*!*****************************!*\
   !*** ./src/mapGenerator.js ***!
@@ -178,7 +226,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return mapGenerator; });\n/* harmony import */ var _generateBaseMapArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./generateBaseMapArray */ \"./src/generateBaseMapArray.js\");\n/* harmony import */ var _drawMap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./drawMap */ \"./src/drawMap.js\");\n/* harmony import */ var _distributeSetPieces__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./distributeSetPieces */ \"./src/distributeSetPieces.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\n\r\n\r\nfunction mapGenerator(sizeX, sizeY) {\r\n  let mapArray = Object(_generateBaseMapArray__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(sizeX, sizeY);\r\n  mapArray = Object(_distributeSetPieces__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(sizeX, sizeY, mapArray);\r\n  Object(_drawMap__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(sizeX, sizeY, mapArray);\r\n}\r\n\n\n//# sourceURL=webpack:///./src/mapGenerator.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return mapGenerator; });\n/* harmony import */ var _generateBaseMapArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./generateBaseMapArray */ \"./src/generateBaseMapArray.js\");\n/* harmony import */ var _drawMap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./drawMap */ \"./src/drawMap.js\");\n/* harmony import */ var _distributeSetPieces__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./distributeSetPieces */ \"./src/distributeSetPieces.js\");\n/* harmony import */ var _makePaths__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./makePaths */ \"./src/makePaths.js\");\n/* eslint-disable linebreak-style */\r\n\r\n\r\n\r\n\r\n\r\nfunction mapGenerator(sizeX, sizeY) {\r\n  let mapArray = Object(_generateBaseMapArray__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(sizeX, sizeY);\r\n  mapArray = Object(_distributeSetPieces__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(sizeX, sizeY, mapArray);\r\n  mapArray = Object(_makePaths__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(sizeX, sizeY, mapArray);\r\n  Object(_drawMap__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(sizeX, sizeY, mapArray);\r\n}\r\n\n\n//# sourceURL=webpack:///./src/mapGenerator.js?");
 
 /***/ }),
 
@@ -190,7 +238,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return randomNumberGenerator; });\n/* eslint-disable linebreak-style */\r\nfunction randomNumberGenerator(loLimit, hiLimit) {\r\n  return Math.floor(Math.random() * (hiLimit)) + (loLimit);\r\n}\r\n\n\n//# sourceURL=webpack:///./src/randomNumGenerator.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return randomNumberGenerator; });\n/* eslint-disable linebreak-style */\r\nfunction randomNumberGenerator(loLimit, range) {\r\n  return Math.floor(Math.random() * (range)) + (loLimit);\r\n}\r\n\n\n//# sourceURL=webpack:///./src/randomNumGenerator.js?");
 
 /***/ }),
 

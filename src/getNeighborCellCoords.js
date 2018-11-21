@@ -1,6 +1,9 @@
 /* eslint-disable linebreak-style */
 export default function getNeighborCellCoords(currentCell, direction) {
-  const neighborCell = currentCell;
+  const neighborCell = {
+    x: currentCell.x,
+    y: currentCell.y,
+  };
 
   switch (direction) {
     case 'north':
