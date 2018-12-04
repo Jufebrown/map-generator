@@ -7,7 +7,7 @@ import getDisplacementBetweenCells from './getDisplacementBetweenCells';
 import getSpecificSetPiece from './getSpecificSetPiece';
 import getAllSetPieces from './getAllSetPieces';
 
-const chooseAxis = () => {
+const chooseRandomAxis = () => {
   const axes = ['x', 'y'];
   const axis = axes[randomNumberGenerator(0, 2)];
   return axis;
@@ -19,7 +19,6 @@ export default function makePaths(sizeX, sizeY, mapArray) {
   let workingArray = mapArray;
   let axisOfMovement;
   const displacementArray = [];
-
   const exit = getSpecificSetPiece(mapArray, 3);
   const setPieceArray = getAllSetPieces(mapArray);
   let currentCell = exit;
@@ -31,7 +30,7 @@ export default function makePaths(sizeX, sizeY, mapArray) {
     const displacement = getDisplacementBetweenCells(exit, setPiece);
     // choose the starting axis of direction to move on to make path
     if (displacement.x !== 0 && displacement.y !== 0) {
-      axisOfMovement = chooseAxis();
+      axisOfMovement = chooseRandomAxis();
     } else if (displacement.x === 0 && displacement.y !== 0) {
       axisOfMovement = 'y';
     } else if (displacement.x !== 0 && displacement.y === 0) {
