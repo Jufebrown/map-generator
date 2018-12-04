@@ -26,7 +26,7 @@ export default function makePaths(sizeX, sizeY, mapArray) {
   let nextCell = getNeighborCellCoords(currentCell, direction);
 
   // loop through setpieces
-  setPieceArray.array.forEach((setPiece) => {
+  setPieceArray.forEach((setPiece) => {
     // get displacement between exit and each setpiece
     const displacement = getDisplacementBetweenCells(exit, setPiece);
     // choose the starting axis of direction to move on to make path
