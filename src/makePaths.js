@@ -13,6 +13,19 @@ const chooseRandomAxis = () => {
   return axis;
 };
 
+const determineStartingAxis = (displacement) => {
+  if (displacement.x !== 0 && displacement.y !== 0) {
+    return chooseRandomAxis();
+  }
+  if (displacement.x === 0 && displacement.y !== 0) {
+    return 'y';
+  }
+  if (displacement.x !== 0 && displacement.y === 0) {
+    return 'x';
+  }
+  return null;
+};
+
 export default function makePaths(sizeX, sizeY, mapArray) {
   const directions = ['north', 'south', 'east', 'west'];
   const direction = directions[randomNumberGenerator(0, 4)];
@@ -29,15 +42,8 @@ export default function makePaths(sizeX, sizeY, mapArray) {
     // get displacement between exit and each setpiece
     const displacement = getDisplacementBetweenCells(exit, setPiece);
     // choose the starting axis of direction to move on to make path
-    if (displacement.x !== 0 && displacement.y !== 0) {
-      axisOfMovement = chooseRandomAxis();
-    } else if (displacement.x === 0 && displacement.y !== 0) {
-      axisOfMovement = 'y';
-    } else if (displacement.x !== 0 && displacement.y === 0) {
-      axisOfMovement = 'x';
-    } else {
-      axisOfMovement = null;
-    }
+    axisOfMovement = determineStartingAxis(displacement);
+    // move down axis of movement setting each cell to be hallway and setting doors on each cell
   });
 
   if (validCell(sizeX, sizeY, nextCell, workingArray)) {
